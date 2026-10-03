@@ -160,16 +160,91 @@ section.band{background:var(--band);}
 .ar-panel{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding:clamp(24px,3.5vw,42px);border-radius:22px;border:1px solid var(--border);background:#fff;box-shadow:var(--shadow-lg);position:relative;overflow:hidden;}
 .ar-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--accent-2),var(--accent),transparent);background-size:200% 100%;animation:shift 5s linear infinite;}
 @keyframes shift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-model-viewer{width:100%;height:clamp(320px,42vw,460px);border-radius:16px;background:radial-gradient(circle at 35% 30%,rgba(125,211,252,.5),transparent 60%),linear-gradient(150deg,#F4F8FD,#EAF2FB);--poster-color:transparent;--progress-bar-color:var(--accent);--progress-mask:transparent;border:1px solid var(--border);}
 .ar-copy h3{font-family:var(--f-display);font-size:clamp(1.15rem,2.2vw,1.7rem);font-weight:800;letter-spacing:.02em;text-transform:uppercase;margin-bottom:14px;line-height:1.2;color:var(--ink);}
 .ar-copy p{color:var(--body);font-size:.95rem;font-weight:400;margin-bottom:22px;}
 .ar-points{display:flex;flex-direction:column;gap:12px;margin-bottom:26px;}
 .ar-points li{display:flex;gap:12px;align-items:flex-start;font-size:.88rem;color:var(--body);font-weight:400;}
 .ar-points li::before{content:'';flex:none;width:7px;height:7px;margin-top:8px;border-radius:50%;background:var(--accent-2);}
-.ar-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:16px;}
-.ar-actions .btn{flex:1;min-width:200px;}
 .ar-hint{margin-top:14px;font-size:.76rem;color:var(--muted);letter-spacing:.03em;line-height:1.6;}
 .ar-hint b{color:var(--accent);font-weight:600;}
+
+/* ============================================================
+   GAME
+   ============================================================ */
+.game-wrap{
+  position:relative;
+  aspect-ratio:4/3;
+  border-radius:16px;
+  overflow:hidden;
+  background:linear-gradient(150deg,#F4F8FD,#EAF2FB);
+  border:1px solid var(--border);
+}
+#gameCanvas{display:block;width:100%;height:100%;}
+.game-hud{
+  position:absolute;top:14px;left:14px;right:14px;
+  display:flex;justify-content:space-between;align-items:center;
+  pointer-events:none;
+}
+.game-score{
+  padding:8px 16px;border-radius:99px;
+  background:rgba(255,255,255,.92);
+  border:1px solid var(--border-2);
+  font-family:var(--f-display);font-size:.68rem;font-weight:800;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--accent);
+  box-shadow:var(--shadow-sm);
+  pointer-events:auto;
+  display:flex;align-items:center;gap:8px;
+}
+.game-score b{color:var(--ink);font-size:.92rem;}
+.game-reset{
+  padding:8px 16px;border-radius:99px;
+  background:rgba(255,255,255,.92);
+  border:1px solid var(--border-2);
+  font-family:var(--f-display);font-size:.66rem;font-weight:800;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--accent);cursor:pointer;
+  box-shadow:var(--shadow-sm);
+  transition:all .25s ease;
+  pointer-events:auto;
+}
+.game-reset:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
+.game-controls{
+  position:absolute;bottom:14px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  pointer-events:none;
+}
+.game-row{display:flex;gap:6px;}
+.game-btn{
+  width:50px;height:50px;border-radius:14px;
+  background:rgba(255,255,255,.92);
+  border:1.5px solid var(--border-2);
+  font-size:1rem;color:var(--accent);
+  display:grid;place-items:center;
+  cursor:pointer;
+  transition:all .15s ease;
+  box-shadow:var(--shadow-sm);
+  pointer-events:auto;
+  user-select:none;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+.game-btn:active,.game-btn.on{
+  background:var(--accent);color:#fff;border-color:var(--accent);
+  transform:scale(.94);
+}
+.game-loading{
+  position:absolute;inset:0;display:grid;place-items:center;
+  background:linear-gradient(150deg,#F4F8FD,#EAF2FB);
+  font-family:var(--f-display);font-size:.68rem;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--muted);font-weight:700;
+  pointer-events:none;
+}
+@media (min-width:900px){
+  .game-controls{display:none;}
+  .game-wrap{aspect-ratio:16/10;}
+}
+
 .work-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:22px;}
 .work{position:relative;display:block;overflow:hidden;border-radius:var(--radius);border:1px solid var(--border);background:#fff;transition:transform .5s var(--ease),border-color .4s ease,box-shadow .5s ease;box-shadow:var(--shadow-sm);}
 .work:hover{transform:translateY(-6px);border-color:var(--border-2);box-shadow:var(--shadow-lg);}
@@ -373,7 +448,7 @@ footer .logo-mark{background:linear-gradient(140deg,rgba(8,145,178,.24),rgba(125
     </a>
     <nav class="nav-links" id="navLinks">
       <a href="#capabilities">Capabilities</a>
-      <a href="#ar">AR / VR</a>
+      <a href="#ar">Play Demo</a>
       <a href="#work">Work</a>
       <a href="#assistant">AI Scope</a>
       <a href="#retainers">Retainers</a>
@@ -429,8 +504,8 @@ footer .logo-mark{background:linear-gradient(140deg,rgba(8,145,178,.24),rgba(125
   <div class="marquee-track" id="marquee">
     <span>Unity</span><span>ARKit</span><span>ARCore</span><span>WebAR</span>
     <span>WebXR</span><span>Meta Quest</span><span>SteamVR</span><span>Blender</span>
-    <span>React JS</span><span>Node JS</span><span>MongoDB</span><span>WordPress</span>
-    <span>Tailwind</span><span>After Effects</span><span>Premiere Pro</span><span>Photoshop</span>
+    <span>Three.js</span><span>React JS</span><span>Node JS</span><span>MongoDB</span>
+    <span>After Effects</span><span>Premiere Pro</span><span>Photoshop</span>
   </div>
 </div>
 
@@ -458,7 +533,7 @@ footer .logo-mark{background:linear-gradient(140deg,rgba(8,145,178,.24),rgba(125
         <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M6 12h4M8 10v4M15.5 12h.01M18 14h.01"/><path d="M17.5 6h-11A4.5 4.5 0 0 0 2 10.5v3A4.5 4.5 0 0 0 6.5 18h11a4.5 4.5 0 0 0 4.5-4.5v-3A4.5 4.5 0 0 0 17.5 6Z"/></svg></div>
         <h3>Game Development</h3>
         <p>Action, adventure, arcade, shooter, racing, puzzle, RPG, simulation, strategy, sports, idle, card and multiplayer.</p>
-        <div class="tags"><span class="tag">Unity</span><span class="tag">2D / 3D</span><span class="tag">Multiplayer</span><span class="tag">Mobile</span></div>
+        <div class="tags"><span class="tag">Unity</span><span class="tag">Three.js</span><span class="tag">2D / 3D</span><span class="tag">Multiplayer</span></div>
       </article>
     </div>
     <div class="cap-grid">
@@ -470,48 +545,60 @@ footer .logo-mark{background:linear-gradient(140deg,rgba(8,145,178,.24),rgba(125
       <article class="card" data-reveal style="--d:120ms"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.9 4.9l2.9 2.9M16.2 16.2l2.9 2.9M2 12h4M18 12h4M4.9 19.1l2.9-2.9M16.2 7.8l2.9-2.9"/></svg></div><h3>AI Integration</h3><p>Scoping assistants, chat interfaces, automation and AI-powered product features.</p><div class="tags"><span class="tag">Chat</span><span class="tag">Automation</span><span class="tag">APIs</span></div></article>
       <article class="card" data-reveal style="--d:0ms"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M3 3h18v13H3z"/><path d="M8 21h8M12 16v5"/></svg></div><h3>AR Commerce</h3><p>Try-before-you-buy for Shopify and WooCommerce — proven with real retail clients.</p><div class="tags"><span class="tag">Shopify</span><span class="tag">WooCommerce</span></div></article>
       <article class="card" data-reveal style="--d:60ms"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></div><h3>3D Visualisation</h3><p>Product renders, digital twins and assets for marketing and e-commerce.</p><div class="tags"><span class="tag">Blender</span><span class="tag">Renders</span><span class="tag">Digital Twin</span></div></article>
-      <article class="card" data-reveal style="--d:120ms"><div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><h3>Hourly Consulting</h3><p>Unity, AR/VR architecture, performance and technical review — billed by the hour.</p><div class="tags"><span class="tag">Unity</span><span class="tag">Architecture</span></div></article>
+      <article class="card" data-reveal style="--d:120ms"><div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><h3>Hourly Consulting</h3><p>Unity, Three.js, AR/VR architecture, performance and technical review — billed by the hour.</p><div class="tags"><span class="tag">Unity</span><span class="tag">Three.js</span><span class="tag">Architecture</span></div></article>
     </div>
   </div>
 </section>
 
+<!-- ============ GAME / DEMO ============ -->
 <section id="ar" class="band">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow" data-reveal>Immersive, In Your Browser</div>
-      <h2 class="sec-title" data-reveal style="--d:70ms">See It In <span class="grad">Your Space</span></h2>
-      <p class="sec-sub" data-reveal style="--d:130ms">No app install. Turn the model with your mouse — or open this page on your phone and place it in the room you're standing in.</p>
+      <div class="eyebrow" data-reveal>Play It, Don't Just View It</div>
+      <h2 class="sec-title" data-reveal style="--d:70ms">Drive the <span class="grad">Demo Car</span></h2>
+      <p class="sec-sub" data-reveal style="--d:130ms">
+        A live 3D game running in your browser. Arrow keys or WASD on desktop.
+        On-screen controls on mobile. Collect all the coins to score.
+      </p>
     </div>
+
     <div class="ar-panel" data-reveal>
-      <model-viewer
-        id="arModel"
-        src="https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Assets@main/Models/ToyCar/glTF-Binary/ToyCar.glb"
-        alt="A 3D car model, viewable in augmented reality"
-        camera-controls
-        touch-action="pan-y"
-        ar
-        ar-modes="webxr quick-look scene-viewer"
-        shadow-intensity="1"
-        exposure="1.1"
-        environment-image="neutral"
-        camera-orbit="35deg 68deg 3.6m"
-        min-camera-orbit="auto auto 1.4m"
-        max-camera-orbit="auto auto 8m">
-      </model-viewer>
-      <div class="ar-copy">
-        <h3>Augmented reality that just works</h3>
-        <p>We ship AR that runs natively on iPhone and Android, and directly in the browser — no download, no friction, no app store review.</p>
-        <ul class="ar-points">
-          <li>Product visualisation for e-commerce — see it before you buy it</li>
-          <li>On-site tools for field teams — instructions overlaid on real equipment</li>
-          <li>VR training and simulation for hardware, safety and process</li>
-          <li>WebXR delivery — one link, works on desktop and headset</li>
-        </ul>
-        <div class="ar-actions">
-          <button id="arBtn" class="btn" type="button" style="display:none;">View in Your Space</button>
-          <a href="#contact" class="btn btn-ghost">Discuss an AR/VR Project</a>
+      <div class="game-wrap">
+        <div class="game-loading" id="gameLoading">Loading 3D engine…</div>
+        <canvas id="gameCanvas"></canvas>
+        <div class="game-hud">
+          <div class="game-score"><span>Score</span> <b id="gameScore">0</b></div>
+          <button id="gameReset" class="game-reset" type="button">Reset</button>
         </div>
-        <p class="ar-hint"><b>On desktop:</b> drag to rotate, scroll to zoom. <b>On mobile:</b> tap the button above to place the model in your space.</p>
+        <div class="game-controls">
+          <button class="game-btn" data-dir="up" type="button" aria-label="Forward">▲</button>
+          <div class="game-row">
+            <button class="game-btn" data-dir="left" type="button" aria-label="Left">◀</button>
+            <button class="game-btn" data-dir="down" type="button" aria-label="Back">▼</button>
+            <button class="game-btn" data-dir="right" type="button" aria-label="Right">▶</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="ar-copy">
+        <h3>A game, not a spinning model</h3>
+        <p>
+          Most studios show you a rotating 3D model. We built a playable one —
+          proof that the same engine we use for AR and VR client work runs in
+          a browser with zero install.
+        </p>
+        <ul class="ar-points">
+          <li>Real-time 3D running in your browser</li>
+          <li>Keyboard on desktop, touch on mobile</li>
+          <li>Same engine powers our AR and VR work</li>
+          <li>No download, no app store, no loading screen</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost">Build a Game Like This</a>
+        <p class="ar-hint" style="margin-top:14px;">
+          <b>Want AR?</b> Our
+          <a href="sourcing.html#ar-products" style="color:var(--accent);text-decoration:underline;">Sourcing page</a>
+          has live AR product visualisation.
+        </p>
       </div>
     </div>
   </div>
@@ -748,7 +835,7 @@ footer .logo-mark{background:linear-gradient(140deg,rgba(8,145,178,.24),rgba(125
       </a>
       <nav class="foot-links">
         <a href="#capabilities">Capabilities</a>
-        <a href="#ar">AR / VR</a>
+        <a href="#ar">Play Demo</a>
         <a href="#work">Work</a>
         <a href="#assistant">AI Scope</a>
         <a href="#retainers">Retainers</a>
@@ -770,7 +857,6 @@ footer .logo-mark{background:linear-gradient(140deg,rgba(8,145,178,.24),rgba(125
   <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1s-.5-.1-.7.1-.8 1-.9 1.2-.3.2-.6.1a8.2 8.2 0 0 1-2.4-1.5 9 9 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.6 3.6 0 0 0-1.1 2.6 6.2 6.2 0 0 0 1.3 3.3 14 14 0 0 0 5.4 4.8c.8.3 1.4.5 1.8.7a4.4 4.4 0 0 0 2 .1 3.3 3.3 0 0 0 2.2-1.5 2.7 2.7 0 0 0 .2-1.5c-.1-.1-.3-.2-.6-.4ZM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.4A10 10 0 1 0 12 2Z"/></svg>
 </a>
 
-<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
 <script>
 window.addEventListener('load', function(){
   var p = document.getElementById('preloader');
@@ -933,8 +1019,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
         function step(ts){
           if(!startTime) startTime = ts;
           var progress = Math.min((ts - startTime)/duration, 1);
-          var current = Math.floor(progress * target);
-          el.textContent = current + suffix;
+          el.textContent = Math.floor(progress * target) + suffix;
           if(progress < 1) requestAnimationFrame(step);
           else el.textContent = target + suffix;
         }
@@ -1117,25 +1202,6 @@ document.getElementById('year').textContent = new Date().getFullYear();
 })();
 
 (function(){
-  var viewer = document.getElementById('arModel');
-  var btn = document.getElementById('arBtn');
-  if(!viewer || !btn) return;
-  function check(){
-    if(viewer.canActivateAR){
-      btn.style.display = 'inline-flex';
-    } else {
-      var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-      if(isMobile){ btn.style.display = 'inline-flex'; }
-    }
-  }
-  btn.addEventListener('click', function(){
-    if(typeof viewer.activateAR === 'function'){ viewer.activateAR(); }
-  });
-  if(viewer.loaded) check();
-  viewer.addEventListener('load', check);
-})();
-
-(function(){
   var form = document.getElementById('newsletterForm');
   var status = document.getElementById('nlStatus');
   if(!form) return;
@@ -1204,6 +1270,264 @@ document.getElementById('year').textContent = new Date().getFullYear();
         btn.textContent = label;
       });
   });
+})();
+</script>
+
+<script type="module">
+(async function(){
+  var canvas = document.getElementById('gameCanvas');
+  var loading = document.getElementById('gameLoading');
+  if(!canvas) return;
+
+  var THREE;
+  try {
+    THREE = await import('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js');
+  } catch(e){
+    console.warn('Three.js failed to load', e);
+    if(loading) loading.textContent = '3D engine unavailable';
+    return;
+  }
+  if(loading) loading.style.display = 'none';
+
+  var scoreEl = document.getElementById('gameScore');
+  var resetBtn = document.getElementById('gameReset');
+  var container = canvas.parentElement;
+
+  var renderer, scene, camera, carGroup;
+  var coins = [];
+  var keys = {};
+  var touchDirs = { up:false, down:false, left:false, right:false };
+  var state = { x:0, z:0, angle:0, speed:0, score:0, wheelSpin:0 };
+
+  function placeCoin(coin, skipCollision){
+    for(var tries=0;tries<20;tries++){
+      var x = (Math.random() - 0.5) * 16;
+      var z = (Math.random() - 0.5) * 16;
+      if(Math.hypot(x - state.x, z - state.z) < 3) continue;
+      if(!skipCollision){
+        var tooClose = false;
+        for(var j=0;j<coins.length;j++){
+          var c = coins[j];
+          if(c === coin || c.userData.collected) continue;
+          if(Math.hypot(c.position.x - x, c.position.z - z) < 2){ tooClose = true; break; }
+        }
+        if(tooClose) continue;
+      }
+      coin.position.set(x, 0.35, z);
+      return;
+    }
+    coin.position.set((Math.random() - 0.5) * 16, 0.35, (Math.random() - 0.5) * 16);
+  }
+
+  function init(){
+    var w = container.clientWidth;
+    var h = container.clientHeight;
+
+    renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setSize(w, h, false);
+
+    scene = new THREE.Scene();
+    scene.fog = new THREE.Fog(0xEAF2FB, 16, 28);
+
+    camera = new THREE.PerspectiveCamera(45, w/h, 0.1, 100);
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.78));
+
+    var dir = new THREE.DirectionalLight(0xffffff, 0.9);
+    dir.position.set(6, 12, 8);
+    scene.add(dir);
+
+    var fill = new THREE.DirectionalLight(0x0891B2, 0.4);
+    fill.position.set(-8, 6, -6);
+    scene.add(fill);
+
+    var grid = new THREE.GridHelper(20, 20, 0x0C4A6E, 0xC9DCEF);
+    grid.material.opacity = 0.35;
+    grid.material.transparent = true;
+    scene.add(grid);
+
+    var floorGeo = new THREE.CircleGeometry(11, 48);
+    var floorMat = new THREE.MeshStandardMaterial({ color: 0xFFFFFF, roughness: 0.92, metalness: 0.04 });
+    var floor = new THREE.Mesh(floorGeo, floorMat);
+    floor.rotation.x = -Math.PI / 2;
+    floor.position.y = -0.02;
+    scene.add(floor);
+
+    carGroup = new THREE.Group();
+
+    var body = new THREE.Mesh(
+      new THREE.BoxGeometry(1.3, 0.45, 2.1),
+      new THREE.MeshStandardMaterial({ color: 0x0C4A6E, metalness: 0.45, roughness: 0.35 })
+    );
+    body.position.y = 0.42;
+    carGroup.add(body);
+
+    var cabin = new THREE.Mesh(
+      new THREE.BoxGeometry(0.95, 0.42, 1),
+      new THREE.MeshStandardMaterial({ color: 0x0891B2, metalness: 0.4, roughness: 0.3 })
+    );
+    cabin.position.set(0, 0.85, -0.15);
+    carGroup.add(cabin);
+
+    var wheelGeo = new THREE.CylinderGeometry(0.24, 0.24, 0.18, 18);
+    var wheelMat = new THREE.MeshStandardMaterial({ color: 0x1a1a1a, roughness: 0.85 });
+    var positions = [
+      [-0.72, 0.24, 0.65], [0.72, 0.24, 0.65],
+      [-0.72, 0.24, -0.65], [0.72, 0.24, -0.65]
+    ];
+    positions.forEach(function(p){
+      var wl = new THREE.Mesh(wheelGeo, wheelMat);
+      wl.rotation.z = Math.PI / 2;
+      wl.position.set(p[0], p[1], p[2]);
+      wl.userData.isWheel = true;
+      carGroup.add(wl);
+    });
+
+    var lightMat = new THREE.MeshStandardMaterial({
+      color: 0xF59E0B, emissive: 0xF59E0B, emissiveIntensity: 0.7
+    });
+    [[-0.4, 0.5, 1.06], [0.4, 0.5, 1.06]].forEach(function(p){
+      var l = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.14, 0.06), lightMat);
+      l.position.set(p[0], p[1], p[2]);
+      carGroup.add(l);
+    });
+
+    carGroup.position.set(0, 0, 0);
+    scene.add(carGroup);
+
+    var coinGeo = new THREE.CylinderGeometry(0.28, 0.28, 0.12, 20);
+    var coinMat = new THREE.MeshStandardMaterial({
+      color: 0xF59E0B, metalness: 0.85, roughness: 0.22,
+      emissive: 0xF59E0B, emissiveIntensity: 0.35
+    });
+    for(var i=0;i<7;i++){
+      var coin = new THREE.Mesh(coinGeo, coinMat);
+      coin.rotation.x = Math.PI / 2;
+      coin.userData.collected = false;
+      coins.push(coin);
+      scene.add(coin);
+    }
+    coins.forEach(function(c){ placeCoin(c, true); });
+
+    camera.position.set(0, 7, 8);
+    camera.lookAt(0, 0, 0);
+
+    window.addEventListener('resize', onResize);
+    onResize();
+  }
+
+  function onResize(){
+    var w = container.clientWidth;
+    var h = container.clientHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+
+  window.addEventListener('keydown', function(e){
+    var k = e.key.toLowerCase();
+    if(['arrowup','arrowdown','arrowleft','arrowright','w','a','s','d',' '].indexOf(k) !== -1){
+      e.preventDefault();
+    }
+    keys[k] = true;
+  });
+  window.addEventListener('keyup', function(e){
+    keys[e.key.toLowerCase()] = false;
+  });
+
+  document.querySelectorAll('.game-btn').forEach(function(btn){
+    var dir = btn.dataset.dir;
+    function on(e){ if(e) e.preventDefault(); touchDirs[dir] = true; btn.classList.add('on'); }
+    function off(){ touchDirs[dir] = false; btn.classList.remove('on'); }
+    btn.addEventListener('pointerdown', on);
+    btn.addEventListener('pointerup', off);
+    btn.addEventListener('pointerleave', off);
+    btn.addEventListener('pointercancel', off);
+  });
+
+  if(resetBtn){
+    resetBtn.addEventListener('click', function(){
+      state.x = 0; state.z = 0; state.angle = 0; state.speed = 0; state.score = 0;
+      scoreEl.textContent = '0';
+      coins.forEach(function(c){
+        c.userData.collected = false;
+        c.visible = true;
+        placeCoin(c, false);
+      });
+    });
+  }
+
+  function animate(){
+    requestAnimationFrame(animate);
+
+    var turn = 0;
+    var throttle = 0;
+    if(keys['arrowleft'] || keys['a'] || touchDirs.left) turn -= 1;
+    if(keys['arrowright'] || keys['d'] || touchDirs.right) turn += 1;
+    if(keys['arrowup'] || keys['w'] || touchDirs.up) throttle += 1;
+    if(keys['arrowdown'] || keys['s'] || touchDirs.down) throttle -= 1;
+
+    state.angle += turn * 0.06 * Math.min(1, Math.abs(state.speed) * 3 + 0.4);
+
+    state.speed += throttle * 0.035;
+    state.speed *= 0.94;
+    state.speed = Math.max(-0.25, Math.min(0.35, state.speed));
+
+    var dx = Math.sin(state.angle) * state.speed;
+    var dz = Math.cos(state.angle) * state.speed;
+    state.x += dx;
+    state.z += dz;
+
+    var dist = Math.hypot(state.x, state.z);
+    if(dist > 9.5){
+      state.x = (state.x / dist) * 9.5;
+      state.z = (state.z / dist) * 9.5;
+      state.speed *= 0.4;
+    }
+
+    carGroup.position.set(state.x, 0, state.z);
+    carGroup.rotation.y = state.angle;
+
+    state.wheelSpin += state.speed * 0.6;
+    carGroup.children.forEach(function(child){
+      if(child.userData.isWheel){ child.rotation.x = state.wheelSpin; }
+    });
+
+    coins.forEach(function(c){ c.rotation.z += 0.03; });
+
+    var camDist = 7.5, camHeight = 5.5;
+    var camTargetX = state.x - Math.sin(state.angle) * camDist;
+    var camTargetZ = state.z - Math.cos(state.angle) * camDist;
+    camera.position.x += (camTargetX - camera.position.x) * 0.08;
+    camera.position.z += (camTargetZ - camera.position.z) * 0.08;
+    camera.position.y += (camHeight - camera.position.y) * 0.08;
+    camera.lookAt(state.x, 0.6, state.z);
+
+    coins.forEach(function(coin){
+      if(coin.userData.collected) return;
+      var d = Math.hypot(coin.position.x - state.x, coin.position.z - state.z);
+      if(d < 0.9){
+        coin.userData.collected = true;
+        coin.visible = false;
+        state.score += 1;
+        scoreEl.textContent = state.score;
+      }
+    });
+
+    if(coins.every(function(c){ return c.userData.collected; })){
+      coins.forEach(function(c){
+        c.userData.collected = false;
+        c.visible = true;
+        placeCoin(c, false);
+      });
+    }
+
+    renderer.render(scene, camera);
+  }
+
+  init();
+  animate();
 })();
 </script>
 </body>

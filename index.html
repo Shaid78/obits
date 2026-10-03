@@ -87,7 +87,7 @@ section[data-tint="dark"] .eyebrow::after{background:var(--highlight);}
   section[data-collapse="true"].open .sec-toggle-chev svg{stroke:#fff;}
   section[data-tint="dark"][data-collapse="true"].open .sec-toggle-chev svg{stroke:var(--ink);}
   .sec-body{max-height:0;overflow:hidden;transition:max-height .55s var(--ease);}
-  section[data-collapse="true"].open .sec-body{max-height:6000px;}
+  section[data-collapse="true"].open .sec-body{max-height:12000px;}
   section[data-collapse="true"] .sec-body > .sec-inner{padding:26px 1.3rem 34px;}
   section[data-collapse="true"] .sec-head .eyebrow{display:none;}
   section[data-collapse="true"] .sec-head{margin-bottom:26px;}
@@ -117,7 +117,7 @@ section[data-tint="dark"] .btn-ghost:hover{background:#fff;color:var(--accent);b
 .logo-text{font-family:var(--f-display);font-weight:800;font-size:.86rem;letter-spacing:.14em;line-height:1;display:flex;flex-direction:column;gap:4px;color:var(--ink);}
 .logo-text em{font-style:normal;background:linear-gradient(100deg,var(--accent-2),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent;}
 .logo-text small{font-size:.44rem;letter-spacing:.42em;color:var(--muted);font-weight:600;}
-.nav-links{display:flex;align-items:center;gap:24px;}
+.nav-links{display:flex;align-items:center;gap:22px;}
 .nav-links > a:not(.btn){position:relative;font-size:.79rem;font-weight:500;letter-spacing:.03em;color:var(--body);transition:color .3s ease;white-space:nowrap;}
 .nav-links > a:not(.btn)::after{content:'';position:absolute;left:0;bottom:-6px;height:2px;width:0;background:var(--accent-2);transition:width .4s var(--ease);}
 .nav-links > a:not(.btn):hover{color:var(--accent);}
@@ -175,6 +175,14 @@ section[data-tint="dark"] .btn-ghost:hover{background:#fff;color:var(--accent);b
 .game-hud-right{display:flex;gap:8px;pointer-events:auto;align-items:center;}
 .game-ico{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.94);border:1px solid rgba(125,211,252,.4);display:grid;place-items:center;font-size:1rem;color:var(--accent);box-shadow:0 6px 18px -8px rgba(0,0,0,.4);transition:all .25s ease;line-height:1;}
 .game-ico:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
+.game-ar{padding:8px 14px;border-radius:10px;background:linear-gradient(100deg,#22C55E,#128C7E);color:#fff;font-family:var(--f-display);font-size:.6rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;box-shadow:0 6px 18px -8px rgba(34,197,94,.6);transition:transform .25s ease;line-height:1;display:flex;align-items:center;gap:6px;white-space:nowrap;cursor:pointer;border:none;}
+.game-ar:hover{transform:translateY(-2px);}
+.game-ar svg{width:12px;height:12px;fill:#fff;}
+.game-ar.exit{background:linear-gradient(100deg,#DC2626,#991B1B);box-shadow:0 6px 18px -8px rgba(220,38,38,.6);}
+.game-ar-hint{position:absolute;bottom:100px;left:50%;transform:translateX(-50%);padding:10px 18px;border-radius:99px;background:rgba(4,11,24,.86);border:1px solid rgba(125,211,252,.4);color:#fff;font-family:var(--f-display);font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;pointer-events:none;z-index:5;white-space:nowrap;animation:blink 2s ease-in-out infinite;}
+body.ar-active .game-frame{background:transparent;border-color:transparent;box-shadow:none;}
+body.ar-active .game-msg{display:none;}
+body.ar-active .game-controls{display:flex !important;}
 .game-controls{position:absolute;bottom:12px;left:0;right:0;display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none;z-index:3;}
 .game-row{display:flex;gap:6px;}
 .game-btn{width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,.92);border:1.5px solid rgba(125,211,252,.5);font-size:1.1rem;color:var(--accent);display:grid;place-items:center;box-shadow:0 8px 20px -10px rgba(0,0,0,.5);pointer-events:auto;user-select:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:transform .1s ease,background .2s ease,color .2s ease;line-height:1;font-family:system-ui;}
@@ -187,7 +195,7 @@ section[data-tint="dark"] .btn-ghost:hover{background:#fff;color:var(--accent);b
 .game-paint{display:flex;align-items:center;gap:12px;}
 .game-paint-label{font-family:var(--f-display);font-size:.6rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--highlight);}
 .paint-swatches{display:flex;gap:8px;}
-.swatch{width:28px;height:28px;border-radius:50%;border:2px solid rgba(255,255,255,.35);cursor:pointer;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;position:relative;padding:0;}
+.swatch{width:28px;height:28px;border-radius:50%;border:2px solid rgba(255,255,255,.35);cursor:pointer;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;padding:0;}
 .swatch:hover{transform:scale(1.15);}
 .swatch.active{border-color:#fff;transform:scale(1.15);box-shadow:0 0 0 3px rgba(255,255,255,.22);}
 .game-tips{display:flex;flex-wrap:wrap;gap:18px;font-size:.72rem;color:rgba(255,255,255,.62);letter-spacing:.03em;}
@@ -196,6 +204,42 @@ section[data-tint="dark"] .btn-ghost:hover{background:#fff;color:var(--accent);b
   .game-below{flex-direction:column;align-items:flex-start;gap:12px;}
   .game-tips{gap:12px;font-size:.68rem;}
 }
+
+/* AR PORTAL */
+.portal-wrap{position:relative;border-radius:22px;overflow:hidden;background:linear-gradient(150deg,#040B18,#0B1F33);border:1px solid rgba(125,211,252,.24);box-shadow:0 40px 90px -40px rgba(8,145,178,.6);display:grid;grid-template-columns:1.1fr .9fr;gap:0;}
+.portal-view{position:relative;aspect-ratio:4/3;background:#040B18;}
+#portalCanvas{display:block;width:100%;height:100%;touch-action:none;}
+.portal-overlay{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;z-index:3;}
+.portal-cta{pointer-events:auto;padding:16px 32px;border-radius:99px;background:linear-gradient(100deg,#0891B2,#0C4A6E);color:#fff;font-family:var(--f-display);font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;box-shadow:0 14px 40px -12px rgba(8,145,178,.8);border:none;cursor:pointer;transition:transform .3s ease,box-shadow .3s ease;display:flex;align-items:center;gap:10px;}
+.portal-cta:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 18px 50px -12px rgba(8,145,178,.95);}
+.portal-cta svg{width:16px;height:16px;fill:#fff;}
+.portal-badge{position:absolute;top:14px;left:14px;z-index:3;padding:6px 12px;border-radius:99px;background:rgba(4,11,24,.8);border:1px solid rgba(125,211,252,.3);font-family:var(--f-display);font-size:.56rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--highlight);}
+.portal-copy{padding:clamp(28px,4vw,44px);display:flex;flex-direction:column;justify-content:center;}
+.portal-copy h3{font-family:var(--f-display);font-size:clamp(1.1rem,2vw,1.5rem);font-weight:800;letter-spacing:.02em;text-transform:uppercase;color:#fff;line-height:1.22;margin-bottom:12px;}
+.portal-copy p{color:rgba(255,255,255,.78);font-size:.88rem;margin-bottom:18px;}
+.portal-scenes{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;}
+.portal-scene-btn{padding:8px 16px;border-radius:99px;border:1.5px solid rgba(125,211,252,.35);background:transparent;color:var(--highlight);font-family:var(--f-display);font-size:.6rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .25s ease;}
+.portal-scene-btn:hover{background:rgba(125,211,252,.12);}
+.portal-scene-btn.active{background:var(--highlight);color:var(--ink);border-color:var(--highlight);}
+.portal-note{font-size:.72rem;color:rgba(255,255,255,.5);line-height:1.6;margin-top:auto;}
+.portal-ar-btn{display:none;padding:12px 22px;border-radius:99px;background:linear-gradient(100deg,#22C55E,#128C7E);color:#fff;border:none;cursor:pointer;font-family:var(--f-display);font-size:.66rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;box-shadow:0 10px 30px -10px rgba(34,197,94,.6);margin-bottom:14px;align-items:center;gap:8px;transition:transform .25s ease;align-self:flex-start;}
+.portal-ar-btn:hover{transform:translateY(-2px);}
+.portal-ar-btn svg{width:14px;height:14px;fill:#fff;}
+@media (max-width:880px){
+  .portal-wrap{grid-template-columns:1fr;}
+  .portal-view{aspect-ratio:1/1;}
+  .portal-copy{padding:24px 22px;}
+}
+
+/* AR GALLERY */
+.ar-gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;}
+.ar-gallery-card{position:relative;overflow:hidden;border-radius:var(--radius);border:1px solid var(--border);background:#fff;transition:transform .45s var(--ease),border-color .35s ease,box-shadow .45s ease;box-shadow:var(--shadow-sm);}
+.ar-gallery-card:hover{transform:translateY(-5px);border-color:var(--border-2);box-shadow:var(--shadow-lg);}
+.ar-gallery-card model-viewer{width:100%;height:240px;background:radial-gradient(circle at 35% 30%,rgba(125,211,252,.4),transparent 60%),linear-gradient(150deg,#F4F8FD,#EAF2FB);--poster-color:transparent;--progress-bar-color:var(--accent);--progress-mask:transparent;}
+.ar-gallery-body{padding:18px 20px 22px;}
+.ar-gallery-tag{display:inline-block;padding:3px 9px;border-radius:99px;background:rgba(125,211,252,.2);font-size:.58rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+.ar-gallery-body h3{font-family:var(--f-display);font-size:.82rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px;color:var(--ink);}
+.ar-gallery-body p{font-size:.78rem;color:var(--body);margin:0;}
 
 .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;}
 .card{position:relative;overflow:hidden;padding:26px 22px 22px;border-radius:var(--radius);border:1px solid var(--border);background:#fff;transition:transform .45s var(--ease),border-color .35s ease,box-shadow .45s ease;box-shadow:var(--shadow-sm);}
@@ -406,10 +450,10 @@ footer .logo-mark{background:linear-gradient(140deg,rgba(8,145,178,.24),rgba(125
     </a>
     <nav class="nav-links" id="navLinks">
       <a href="#game">Play</a>
+      <a href="#portal">Portal</a>
+      <a href="#ar-gallery">AR Gallery</a>
       <a href="#capabilities">Capabilities</a>
       <a href="#work">Work</a>
-      <a href="#assistant">AI Scope</a>
-      <a href="#retainers">Retainers</a>
       <a href="#contact">Contact</a>
       <a href="sourcing.html" class="nav-sourcing">Sourcing</a>
     </nav>
@@ -421,6 +465,7 @@ footer .logo-mark{background:linear-gradient(140deg,rgba(8,145,178,.24),rgba(125
 
 <main>
 
+<!-- HERO -->
 <section class="hero" id="home">
   <div class="wrap">
     <div class="hero-grid">
@@ -453,23 +498,26 @@ footer .logo-mark{background:linear-gradient(140deg,rgba(8,145,178,.24),rgba(125
   </div>
 </section>
 
+<!-- GAME -->
 <section id="game" data-tint="dark" class="sec-game">
   <div class="wrap">
     <div class="sec-head center" data-reveal>
       <div class="eyebrow">Playable Demo</div>
       <h2 class="sec-title">Drive the <span class="grad">Hypercar</span></h2>
-      <p class="sec-sub">A live 3D supercar game running in your browser. Pick your paint, collect coins, rack up the combo. Keyboard on desktop, on-screen pads on mobile.</p>
+      <p class="sec-sub">A live 3D supercar game running in your browser. Pick your paint, collect coins, rack up the combo. On Android, tap "Play in AR" to drive on your real floor.</p>
     </div>
 
     <div class="game-frame" id="gameWrap" data-reveal>
       <canvas id="gameCanvas"></canvas>
       <div class="game-hud">
-        <div class="game-score" id="gameScoreWrap">
-          <span>Score</span> <b id="gameScore">0</b>
-        </div>
+        <div class="game-score" id="gameScoreWrap"><span>Score</span> <b id="gameScore">0</b></div>
         <div class="game-hud-right">
-          <button id="gameSound" class="game-ico" aria-label="Toggle sound" title="Toggle sound" type="button">🔇</button>
-          <button id="gameReset" class="game-ico" aria-label="Reset game" title="Reset game" type="button">↻</button>
+          <button id="gameAR" class="game-ar" type="button" style="display:none;">
+            <svg viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5Zm0 20 10-5-10-5L2 17l10 5Z"/></svg>
+            <span id="gameARText">Play in AR</span>
+          </button>
+          <button id="gameSound" class="game-ico" aria-label="Toggle sound" type="button">🔇</button>
+          <button id="gameReset" class="game-ico" aria-label="Reset game" type="button">↻</button>
         </div>
       </div>
       <div class="game-controls">
@@ -481,6 +529,7 @@ footer .logo-mark{background:linear-gradient(140deg,rgba(8,145,178,.24),rgba(125
         </div>
       </div>
       <div class="game-msg" id="gameMsg">Drive with <kbd>WASD</kbd> or <kbd>Arrows</kbd></div>
+      <div class="game-ar-hint" id="gameARHint" style="display:none;">Point at the floor, then tap to place the car</div>
     </div>
 
     <div class="game-below">
@@ -503,6 +552,160 @@ footer .logo-mark{background:linear-gradient(140deg,rgba(8,145,178,.24),rgba(125
   </div>
 </section>
 
+<!-- AR PORTAL -->
+<section id="portal" data-tint="dark">
+  <div class="wrap">
+    <div class="sec-head center" data-reveal>
+      <div class="eyebrow">Step Through</div>
+      <h2 class="sec-title">The <span class="grad">AR Portal</span></h2>
+      <p class="sec-sub">Open a doorway to another place. On Android, place the portal on your floor and walk through. On desktop and iPhone, explore the same world in fullscreen 3D.</p>
+    </div>
+
+    <div class="portal-wrap" data-reveal>
+      <div class="portal-view">
+        <canvas id="portalCanvas"></canvas>
+        <span class="portal-badge" id="portalBadge">Apartment · Preview</span>
+        <div class="portal-overlay" id="portalOverlay">
+          <button class="portal-cta" id="portalStart" type="button">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            Enter Portal
+          </button>
+        </div>
+      </div>
+      <div class="portal-copy">
+        <h3>Choose your destination</h3>
+        <p>A portal isn't just a door — it's a scene. Pick a world below, then step inside.</p>
+        <div class="portal-scenes">
+          <button class="portal-scene-btn active" data-scene="apartment" type="button">Apartment</button>
+          <button class="portal-scene-btn" data-scene="garden" type="button">Garden</button>
+          <button class="portal-scene-btn" data-scene="underwater" type="button">Underwater</button>
+        </div>
+        <button class="portal-ar-btn" id="portalARBtn" type="button">
+          <svg viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5Zm0 20 10-5-10-5L2 17l10 5Z"/></svg>
+          Place Portal in Your Space
+        </button>
+        <p class="portal-note">
+          <b>On Android:</b> Tap the green button above to place the portal on your real floor.<br>
+          <b>On iPhone / Desktop:</b> Use the fullscreen 3D walkthrough — Apple doesn't allow WebXR.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AR GALLERY -->
+<section id="ar-gallery" data-tint="ice" data-collapse="true">
+  <div class="wrap">
+    <button class="sec-toggle" type="button" aria-expanded="false">
+      <span>View in AR</span>
+      <span class="sec-toggle-num">8 models</span>
+      <span class="sec-toggle-chev"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span>
+    </button>
+    <div class="sec-body">
+      <div class="sec-inner">
+        <div class="sec-head">
+          <div class="eyebrow">Try It In Your Space</div>
+          <h2 class="sec-title">View These In <span class="grad">Your Room</span></h2>
+          <p class="sec-sub">Point your phone at the floor and place any of these models into your actual space. Works on iPhone (AR Quick Look) and Android (WebXR / Scene Viewer).</p>
+        </div>
+
+        <div class="ar-gallery-grid">
+
+          <div class="ar-gallery-card" data-reveal style="--d:0ms">
+            <model-viewer src="https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Assets@main/Models/DamagedHelmet/glTF-Binary/DamagedHelmet.glb" alt="Sci-fi damaged helmet" camera-controls touch-action="pan-y" ar ar-modes="webxr quick-look scene-viewer" shadow-intensity="1" environment-image="neutral" camera-orbit="0deg 75deg 2m">
+              <button slot="ar-button" class="btn" style="position:absolute;bottom:10px;left:50%;transform:translateX(-50%);padding:9px 18px;font-size:.62rem;">View in AR</button>
+            </model-viewer>
+            <div class="ar-gallery-body">
+              <span class="ar-gallery-tag">Sci-Fi</span>
+              <h3>Damaged Helmet</h3>
+              <p>PBR showcase model. Glowing visor, scratched metal.</p>
+            </div>
+          </div>
+
+          <div class="ar-gallery-card" data-reveal style="--d:60ms">
+            <model-viewer src="https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Assets@main/Models/ToyCar/glTF-Binary/ToyCar.glb" alt="Toy hypercar model" camera-controls touch-action="pan-y" ar ar-modes="webxr quick-look scene-viewer" shadow-intensity="1" environment-image="neutral" camera-orbit="35deg 68deg 2.2m">
+              <button slot="ar-button" class="btn" style="position:absolute;bottom:10px;left:50%;transform:translateX(-50%);padding:9px 18px;font-size:.62rem;">View in AR</button>
+            </model-viewer>
+            <div class="ar-gallery-body">
+              <span class="ar-gallery-tag">Automotive</span>
+              <h3>Toy Hypercar</h3>
+              <p>The same category we built the driving game around.</p>
+            </div>
+          </div>
+
+          <div class="ar-gallery-card" data-reveal style="--d:120ms">
+            <model-viewer src="https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Assets@main/Models/Fox/glTF-Binary/Fox.glb" alt="Animated fox model" camera-controls touch-action="pan-y" ar ar-modes="webxr quick-look scene-viewer" autoplay animation-name="Survey" shadow-intensity="1" environment-image="neutral" camera-orbit="0deg 70deg 4m">
+              <button slot="ar-button" class="btn" style="position:absolute;bottom:10px;left:50%;transform:translateX(-50%);padding:9px 18px;font-size:.62rem;">View in AR</button>
+            </model-viewer>
+            <div class="ar-gallery-body">
+              <span class="ar-gallery-tag">Animated</span>
+              <h3>Animated Fox</h3>
+              <p>Real-time animation running live. Rare in browser AR.</p>
+            </div>
+          </div>
+
+          <div class="ar-gallery-card" data-reveal style="--d:180ms">
+            <model-viewer src="https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Assets@main/Models/AntiqueCamera/glTF-Binary/AntiqueCamera.glb" alt="Antique camera model" camera-controls touch-action="pan-y" ar ar-modes="webxr quick-look scene-viewer" shadow-intensity="1" environment-image="neutral" camera-orbit="35deg 65deg 2m">
+              <button slot="ar-button" class="btn" style="position:absolute;bottom:10px;left:50%;transform:translateX(-50%);padding:9px 18px;font-size:.62rem;">View in AR</button>
+            </model-viewer>
+            <div class="ar-gallery-body">
+              <span class="ar-gallery-tag">Vintage</span>
+              <h3>Antique Camera</h3>
+              <p>Fits our story — we build the cameras you look through.</p>
+            </div>
+          </div>
+
+          <div class="ar-gallery-card" data-reveal style="--d:0ms">
+            <model-viewer src="https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Assets@main/Models/BoomBox/glTF-Binary/BoomBox.glb" alt="Retro boombox model" camera-controls touch-action="pan-y" ar ar-modes="webxr quick-look scene-viewer" shadow-intensity="1" environment-image="neutral" camera-orbit="35deg 65deg 1.5m">
+              <button slot="ar-button" class="btn" style="position:absolute;bottom:10px;left:50%;transform:translateX(-50%);padding:9px 18px;font-size:.62rem;">View in AR</button>
+            </model-viewer>
+            <div class="ar-gallery-body">
+              <span class="ar-gallery-tag">Retro</span>
+              <h3>Retro Boombox</h3>
+              <p>High-poly PBR scan. Sits beautifully on a real desk.</p>
+            </div>
+          </div>
+
+          <div class="ar-gallery-card" data-reveal style="--d:60ms">
+            <model-viewer src="https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Assets@main/Models/DragonAttenuation/glTF-Binary/DragonAttenuation.glb" alt="Dragon statue model" camera-controls touch-action="pan-y" ar ar-modes="webxr quick-look scene-viewer" shadow-intensity="1" environment-image="neutral" camera-orbit="35deg 70deg 2.5m">
+              <button slot="ar-button" class="btn" style="position:absolute;bottom:10px;left:50%;transform:translateX(-50%);padding:9px 18px;font-size:.62rem;">View in AR</button>
+            </model-viewer>
+            <div class="ar-gallery-body">
+              <span class="ar-gallery-tag">Exotic</span>
+              <h3>Dragon Statue</h3>
+              <p>A signature piece. Works brilliantly as a floor centrepiece.</p>
+            </div>
+          </div>
+
+          <div class="ar-gallery-card" data-reveal style="--d:120ms">
+            <model-viewer src="https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Assets@main/Models/Avocado/glTF-Binary/Avocado.glb" alt="Avocado model" camera-controls touch-action="pan-y" ar ar-modes="webxr quick-look scene-viewer" shadow-intensity="1" environment-image="neutral" camera-orbit="35deg 65deg 0.4m">
+              <button slot="ar-button" class="btn" style="position:absolute;bottom:10px;left:50%;transform:translateX(-50%);padding:9px 18px;font-size:.62rem;">View in AR</button>
+            </model-viewer>
+            <div class="ar-gallery-body">
+              <span class="ar-gallery-tag">Product</span>
+              <h3>Avocado</h3>
+              <p>Small, accurate, sits on a real table. Great for scale.</p>
+            </div>
+          </div>
+
+          <div class="ar-gallery-card" data-reveal style="--d:180ms">
+            <model-viewer src="https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Assets@main/Models/Lantern/glTF-Binary/Lantern.glb" alt="Decorative lantern model" camera-controls touch-action="pan-y" ar ar-modes="webxr quick-look scene-viewer" shadow-intensity="1" environment-image="neutral" camera-orbit="35deg 65deg 2m">
+              <button slot="ar-button" class="btn" style="position:absolute;bottom:10px;left:50%;transform:translateX(-50%);padding:9px 18px;font-size:.62rem;">View in AR</button>
+            </model-viewer>
+            <div class="ar-gallery-body">
+              <span class="ar-gallery-tag">Décor</span>
+              <h3>Lantern</h3>
+              <p>Warm PBR materials with emissive glow. Looks great at night.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
 <section id="capabilities" data-tint="white" data-collapse="true">
   <div class="wrap">
     <button class="sec-toggle" type="button" aria-expanded="false">
@@ -518,84 +721,25 @@ footer .logo-mark{background:linear-gradient(140deg,rgba(8,145,178,.24),rgba(125
           <p class="sec-sub">Immersive experiences, games, and the digital products around them — engineered end-to-end.</p>
         </div>
         <div class="card-grid">
-          <article class="card" data-reveal style="--d:0ms">
-            <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2 3 7v10l9 5 9-5V7l-9-5Z"/><path d="M3 7l9 5 9-5M12 12v10"/></svg></div>
-            <h3>AR Development</h3>
-            <p>Augmented reality across mobile, web and desktop — from try-before-you-buy commerce to on-site visualisation.</p>
-            <div class="tags"><span class="tag">ARKit</span><span class="tag">ARCore</span><span class="tag">WebAR</span></div>
-          </article>
-          <article class="card" data-reveal style="--d:60ms">
-            <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20Z"/><circle cx="12" cy="12" r="10"/></svg></div>
-            <h3>VR Development</h3>
-            <p>Room-scale and seated VR for training, simulation, product review and entertainment.</p>
-            <div class="tags"><span class="tag">Meta Quest</span><span class="tag">SteamVR</span><span class="tag">OpenXR</span></div>
-          </article>
-          <article class="card" data-reveal style="--d:120ms">
-            <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M6 12h4M8 10v4M15.5 12h.01M18 14h.01"/><path d="M17.5 6h-11A4.5 4.5 0 0 0 2 10.5v3A4.5 4.5 0 0 0 6.5 18h11a4.5 4.5 0 0 0 4.5-4.5v-3A4.5 4.5 0 0 0 17.5 6Z"/></svg></div>
-            <h3>Game Development</h3>
-            <p>Action, adventure, arcade, shooter, racing, puzzle, RPG, simulation, strategy, sports, idle, card and multiplayer.</p>
-            <div class="tags"><span class="tag">Unity</span><span class="tag">2D / 3D</span><span class="tag">Multiplayer</span></div>
-          </article>
-          <article class="card" data-reveal style="--d:0ms">
-            <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
-            <h3>Web Design</h3>
-            <p>Fast, responsive, accessible interfaces built with modern tooling.</p>
-            <div class="tags"><span class="tag">Tailwind</span><span class="tag">React</span></div>
-          </article>
-          <article class="card" data-reveal style="--d:60ms">
-            <div class="card-icon"><svg viewBox="0 0 24 24"><path d="m8 6-6 6 6 6M16 6l6 6-6 6M14 4l-4 16"/></svg></div>
-            <h3>Web Development</h3>
-            <p>Full-stack engineering — architecture, APIs, deployment and maintenance.</p>
-            <div class="tags"><span class="tag">Node JS</span><span class="tag">MongoDB</span></div>
-          </article>
-          <article class="card" data-reveal style="--d:120ms">
-            <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.9 4.9l2.9 2.9M16.2 16.2l2.9 2.9M2 12h4M18 12h4M4.9 19.1l2.9-2.9M16.2 7.8l2.9-2.9"/></svg></div>
-            <h3>AI Integration</h3>
-            <p>Scoping assistants, chat interfaces, automation and AI-powered product features.</p>
-            <div class="tags"><span class="tag">Chat</span><span class="tag">Automation</span></div>
-          </article>
-          <article class="card" data-reveal style="--d:0ms">
-            <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="14" height="14" rx="2"/><path d="m22 8-6 4 6 4V8Z"/></svg></div>
-            <h3>Video &amp; Motion</h3>
-            <p>Multi-track editing, colour grading, animated explainers and product reels.</p>
-            <div class="tags"><span class="tag">Premiere</span><span class="tag">After Effects</span></div>
-          </article>
-          <article class="card" data-reveal style="--d:60ms">
-            <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18h1.5a2.5 2.5 0 0 0 0-5H13a1 1 0 0 1 0-2h4a4 4 0 0 0 4-4 7 7 0 0 0-7-7h-2Z"/><circle cx="7.5" cy="11.5" r="1"/></svg></div>
-            <h3>Graphic Design</h3>
-            <p>Logos, packaging, brand systems and print-ready assets.</p>
-            <div class="tags"><span class="tag">Logo</span><span class="tag">Packaging</span></div>
-          </article>
-          <article class="card" data-reveal style="--d:120ms">
-            <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M3 3h18v13H3z"/><path d="M8 21h8M12 16v5"/></svg></div>
-            <h3>AR Commerce</h3>
-            <p>Try-before-you-buy for Shopify and WooCommerce — proven with real retail clients.</p>
-            <div class="tags"><span class="tag">Shopify</span><span class="tag">WooCommerce</span></div>
-          </article>
-          <article class="card" data-reveal style="--d:0ms">
-            <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></div>
-            <h3>3D Visualisation</h3>
-            <p>Product renders, digital twins and assets for marketing and e-commerce.</p>
-            <div class="tags"><span class="tag">Blender</span><span class="tag">Digital Twin</span></div>
-          </article>
-          <article class="card" data-reveal style="--d:60ms">
-            <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
-            <h3>Hourly Consulting</h3>
-            <p>Unity, AR/VR architecture, performance and technical review.</p>
-            <div class="tags"><span class="tag">Unity</span><span class="tag">Architecture</span></div>
-          </article>
-          <article class="card" data-reveal style="--d:120ms">
-            <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20Z"/></svg></div>
-            <h3>WebXR Delivery</h3>
-            <p>One link, works on desktop and headset — no install, no app store.</p>
-            <div class="tags"><span class="tag">WebXR</span><span class="tag">6DoF</span></div>
-          </article>
+          <article class="card" data-reveal style="--d:0ms"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2 3 7v10l9 5 9-5V7l-9-5Z"/><path d="M3 7l9 5 9-5M12 12v10"/></svg></div><h3>AR Development</h3><p>Augmented reality across mobile, web and desktop — from try-before-you-buy commerce to on-site visualisation.</p><div class="tags"><span class="tag">ARKit</span><span class="tag">ARCore</span><span class="tag">WebAR</span></div></article>
+          <article class="card" data-reveal style="--d:60ms"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20Z"/><circle cx="12" cy="12" r="10"/></svg></div><h3>VR Development</h3><p>Room-scale and seated VR for training, simulation, product review and entertainment.</p><div class="tags"><span class="tag">Meta Quest</span><span class="tag">SteamVR</span><span class="tag">OpenXR</span></div></article>
+          <article class="card" data-reveal style="--d:120ms"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M6 12h4M8 10v4M15.5 12h.01M18 14h.01"/><path d="M17.5 6h-11A4.5 4.5 0 0 0 2 10.5v3A4.5 4.5 0 0 0 6.5 18h11a4.5 4.5 0 0 0 4.5-4.5v-3A4.5 4.5 0 0 0 17.5 6Z"/></svg></div><h3>Game Development</h3><p>Action, adventure, arcade, shooter, racing, puzzle, RPG, simulation, strategy, sports, idle, card and multiplayer.</p><div class="tags"><span class="tag">Unity</span><span class="tag">2D / 3D</span><span class="tag">Multiplayer</span></div></article>
+          <article class="card" data-reveal style="--d:0ms"><div class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div><h3>Web Design</h3><p>Fast, responsive, accessible interfaces built with modern tooling.</p><div class="tags"><span class="tag">Tailwind</span><span class="tag">React</span></div></article>
+          <article class="card" data-reveal style="--d:60ms"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="m8 6-6 6 6 6M16 6l6 6-6 6M14 4l-4 16"/></svg></div><h3>Web Development</h3><p>Full-stack engineering — architecture, APIs, deployment and maintenance.</p><div class="tags"><span class="tag">Node JS</span><span class="tag">MongoDB</span></div></article>
+          <article class="card" data-reveal style="--d:120ms"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.9 4.9l2.9 2.9M16.2 16.2l2.9 2.9M2 12h4M18 12h4M4.9 19.1l2.9-2.9M16.2 7.8l2.9-2.9"/></svg></div><h3>AI Integration</h3><p>Scoping assistants, chat interfaces, automation and AI-powered product features.</p><div class="tags"><span class="tag">Chat</span><span class="tag">Automation</span></div></article>
+          <article class="card" data-reveal style="--d:0ms"><div class="card-icon"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="14" height="14" rx="2"/><path d="m22 8-6 4 6 4V8Z"/></svg></div><h3>Video &amp; Motion</h3><p>Multi-track editing, colour grading, animated explainers and product reels.</p><div class="tags"><span class="tag">Premiere</span><span class="tag">After Effects</span></div></article>
+          <article class="card" data-reveal style="--d:60ms"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18h1.5a2.5 2.5 0 0 0 0-5H13a1 1 0 0 1 0-2h4a4 4 0 0 0 4-4 7 7 0 0 0-7-7h-2Z"/><circle cx="7.5" cy="11.5" r="1"/></svg></div><h3>Graphic Design</h3><p>Logos, packaging, brand systems and print-ready assets.</p><div class="tags"><span class="tag">Logo</span><span class="tag">Packaging</span></div></article>
+          <article class="card" data-reveal style="--d:120ms"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M3 3h18v13H3z"/><path d="M8 21h8M12 16v5"/></svg></div><h3>AR Commerce</h3><p>Try-before-you-buy for Shopify and WooCommerce — proven with real retail clients.</p><div class="tags"><span class="tag">Shopify</span><span class="tag">WooCommerce</span></div></article>
+          <article class="card" data-reveal style="--d:0ms"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></div><h3>3D Visualisation</h3><p>Product renders, digital twins and assets for marketing and e-commerce.</p><div class="tags"><span class="tag">Blender</span><span class="tag">Digital Twin</span></div></article>
+          <article class="card" data-reveal style="--d:60ms"><div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><h3>Hourly Consulting</h3><p>Unity, AR/VR architecture, performance and technical review.</p><div class="tags"><span class="tag">Unity</span><span class="tag">Architecture</span></div></article>
+          <article class="card" data-reveal style="--d:120ms"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20Z"/></svg></div><h3>WebXR Delivery</h3><p>One link, works on desktop and headset — no install, no app store.</p><div class="tags"><span class="tag">WebXR</span><span class="tag">6DoF</span></div></article>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- WORK -->
 <section id="work" data-tint="ice" data-collapse="true">
   <div class="wrap">
     <button class="sec-toggle" type="button" aria-expanded="false">
@@ -611,36 +755,19 @@ footer .logo-mark{background:linear-gradient(140deg,rgba(8,145,178,.24),rgba(125
           <p class="sec-sub">AR experiences, 3D assets and tools we've prototyped and shipped.</p>
         </div>
         <div class="work-grid">
-          <a class="work" href="https://vimeo.com/734321978" target="_blank" rel="noopener" data-reveal style="--d:0ms">
-            <div class="work-thumb"><span class="work-num">01</span><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
-            <div class="work-body"><h3>AR Virtual Car Driving</h3><p>Drive virtual cars in the real world using your phone or tablet.</p></div>
-          </a>
-          <a class="work" href="https://vimeo.com/734671804" target="_blank" rel="noopener" data-reveal style="--d:60ms">
-            <div class="work-thumb"><span class="work-num">02</span><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
-            <div class="work-body"><h3>3D Assets &amp; Visualisation</h3><p>3D assets for digital experiences and product visualisation.</p></div>
-          </a>
-          <a class="work" href="https://vimeo.com/791416591" target="_blank" rel="noopener" data-reveal style="--d:120ms">
-            <div class="work-thumb"><span class="work-num">03</span><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
-            <div class="work-body"><h3>AR Car Colour Changer</h3><p>Drive virtual cars and change car colour in the real world.</p></div>
-          </a>
-          <a class="work" href="https://vimeo.com/791571282" target="_blank" rel="noopener" data-reveal style="--d:0ms">
-            <div class="work-thumb"><span class="work-num">04</span><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
-            <div class="work-body"><h3>Online Video Editor</h3><p>All-in-one online video editor with colour grading and subtitles.</p></div>
-          </a>
-          <a class="work" href="https://vimeo.com/791420111" target="_blank" rel="noopener" data-reveal style="--d:60ms">
-            <div class="work-thumb"><span class="work-num">05</span><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
-            <div class="work-body"><h3>Full Stack Development</h3><p>End-to-end application development, from database to interface.</p></div>
-          </a>
-          <a class="work" href="https://vimeo.com/791420111" target="_blank" rel="noopener" data-reveal style="--d:120ms">
-            <div class="work-thumb"><span class="work-num">06</span><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
-            <div class="work-body"><h3>Packaging Label &amp; 3D Design</h3><p>Packaging label design and 3D design for physical products.</p></div>
-          </a>
+          <a class="work" href="https://vimeo.com/734321978" target="_blank" rel="noopener" data-reveal style="--d:0ms"><div class="work-thumb"><span class="work-num">01</span><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div><div class="work-body"><h3>AR Virtual Car Driving</h3><p>Drive virtual cars in the real world using your phone or tablet.</p></div></a>
+          <a class="work" href="https://vimeo.com/734671804" target="_blank" rel="noopener" data-reveal style="--d:60ms"><div class="work-thumb"><span class="work-num">02</span><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div><div class="work-body"><h3>3D Assets &amp; Visualisation</h3><p>3D assets for digital experiences and product visualisation.</p></div></a>
+          <a class="work" href="https://vimeo.com/791416591" target="_blank" rel="noopener" data-reveal style="--d:120ms"><div class="work-thumb"><span class="work-num">03</span><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div><div class="work-body"><h3>AR Car Colour Changer</h3><p>Drive virtual cars and change car colour in the real world.</p></div></a>
+          <a class="work" href="https://vimeo.com/791571282" target="_blank" rel="noopener" data-reveal style="--d:0ms"><div class="work-thumb"><span class="work-num">04</span><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div><div class="work-body"><h3>Online Video Editor</h3><p>All-in-one online video editor with colour grading and subtitles.</p></div></a>
+          <a class="work" href="https://vimeo.com/791420111" target="_blank" rel="noopener" data-reveal style="--d:60ms"><div class="work-thumb"><span class="work-num">05</span><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div><div class="work-body"><h3>Full Stack Development</h3><p>End-to-end application development, from database to interface.</p></div></a>
+          <a class="work" href="https://vimeo.com/791420111" target="_blank" rel="noopener" data-reveal style="--d:120ms"><div class="work-thumb"><span class="work-num">06</span><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div><div class="work-body"><h3>Packaging Label &amp; 3D Design</h3><p>Packaging label design and 3D design for physical products.</p></div></a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- AI ASSISTANT -->
 <section id="assistant" data-tint="violet" data-collapse="true">
   <div class="wrap">
     <button class="sec-toggle" type="button" aria-expanded="false">
@@ -671,6 +798,7 @@ footer .logo-mark{background:linear-gradient(140deg,rgba(8,145,178,.24),rgba(125
   </div>
 </section>
 
+<!-- REVIEWS -->
 <section id="reviews" data-tint="warm" data-collapse="true">
   <div class="wrap">
     <button class="sec-toggle" type="button" aria-expanded="false">
@@ -685,36 +813,17 @@ footer .logo-mark{background:linear-gradient(140deg,rgba(8,145,178,.24),rgba(125
           <h2 class="sec-title">Trusted By <span class="grad">Builders</span></h2>
         </div>
         <div class="rev-grid">
-          <article class="rev">
-            <div class="quote">"</div>
-            <div class="stars"><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg></div>
-            <p>Excellent services. The developer delivered exactly what was needed and guided me through using the app.</p>
-            <div class="rev-who"><span class="avatar">PC</span><div><b>Paul Caulfe</b><span>Client</span></div></div>
-          </article>
-          <article class="rev">
-            <div class="quote">"</div>
-            <div class="stars"><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg></div>
-            <p>Highly skilled developer and communication was a top priority throughout. Delivered on schedule.</p>
-            <div class="rev-who"><span class="avatar">JD</span><div><b>Jethen Deav</b><span>Client</span></div></div>
-          </article>
-          <article class="rev">
-            <div class="quote">"</div>
-            <div class="stars"><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg></div>
-            <p>Recommended for implementing AR into an e-commerce area rugs product line. Great result.</p>
-            <div class="rev-who"><span class="avatar">SR</span><div><b>Shiraz Rugs</b><span>E-commerce</span></div></div>
-          </article>
-          <article class="rev">
-            <div class="quote">"</div>
-            <div class="stars"><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg></div>
-            <p>Thank you for the help with Unity — the assistance was accurate and fast.</p>
-            <div class="rev-who"><span class="avatar">CW</span><div><b>Cortland Walker</b><span>Client</span></div></div>
-          </article>
+          <article class="rev"><div class="quote">"</div><div class="stars"><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg></div><p>Excellent services. The developer delivered exactly what was needed and guided me through using the app.</p><div class="rev-who"><span class="avatar">PC</span><div><b>Paul Caulfe</b><span>Client</span></div></div></article>
+          <article class="rev"><div class="quote">"</div><div class="stars"><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg></div><p>Highly skilled developer and communication was a top priority throughout. Delivered on schedule.</p><div class="rev-who"><span class="avatar">JD</span><div><b>Jethen Deav</b><span>Client</span></div></div></article>
+          <article class="rev"><div class="quote">"</div><div class="stars"><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg></div><p>Recommended for implementing AR into an e-commerce area rugs product line. Great result.</p><div class="rev-who"><span class="avatar">SR</span><div><b>Shiraz Rugs</b><span>E-commerce</span></div></div></article>
+          <article class="rev"><div class="quote">"</div><div class="stars"><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2 2 9.4l7-.9L12 2Z"/></svg></div><p>Thank you for the help with Unity — the assistance was accurate and fast.</p><div class="rev-who"><span class="avatar">CW</span><div><b>Cortland Walker</b><span>Client</span></div></div></article>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- SOURCING CTA -->
 <section id="sourcing-band" data-tint="dark" data-collapse="true">
   <div class="wrap">
     <button class="sec-toggle" type="button" aria-expanded="false">
@@ -737,6 +846,7 @@ footer .logo-mark{background:linear-gradient(140deg,rgba(8,145,178,.24),rgba(125
   </div>
 </section>
 
+<!-- RETAINERS -->
 <section id="retainers" data-tint="teal" data-collapse="true">
   <div class="wrap">
     <button class="sec-toggle" type="button" aria-expanded="false">
@@ -752,45 +862,9 @@ footer .logo-mark{background:linear-gradient(140deg,rgba(8,145,178,.24),rgba(125
           <p class="sec-sub">For clients who want continuity — ongoing development, iteration and support.</p>
         </div>
         <div class="tier-grid">
-          <article class="tier">
-            <h3>Starter</h3>
-            <div class="price">$390 <small>/ month</small></div>
-            <p class="tier-desc">For small teams who need steady iteration.</p>
-            <ul>
-              <li>20 hours of development per month</li>
-              <li>Priority email and WhatsApp support</li>
-              <li>Monthly progress report</li>
-              <li>Rollover of up to 5 unused hours</li>
-            </ul>
-            <a class="btn btn-ghost" href="https://wa.me/8801771063637?text=Hi%20OceanBlue%2C%20I%27m%20interested%20in%20the%20Starter%20retainer.">Request This Plan</a>
-          </article>
-          <article class="tier featured">
-            <span class="tier-flag">Most Popular</span>
-            <h3>Studio</h3>
-            <div class="price">$990 <small>/ month</small></div>
-            <p class="tier-desc">For growing products that need a dedicated build cadence.</p>
-            <ul>
-              <li>60 hours of development per month</li>
-              <li>Dedicated point of contact</li>
-              <li>Bi-weekly calls and planning</li>
-              <li>Priority turnaround on urgent work</li>
-              <li>Rollover of up to 15 unused hours</li>
-            </ul>
-            <a class="btn" href="https://wa.me/8801771063637?text=Hi%20OceanBlue%2C%20I%27m%20interested%20in%20the%20Studio%20retainer.">Request This Plan</a>
-          </article>
-          <article class="tier">
-            <h3>Partner</h3>
-            <div class="price">$2,400 <small>/ month</small></div>
-            <p class="tier-desc">Full team access for products with continuous needs.</p>
-            <ul>
-              <li>150 hours of development per month</li>
-              <li>Full team access — AR/VR, web, media</li>
-              <li>Weekly calls and roadmap planning</li>
-              <li>Same-day response on urgent issues</li>
-              <li>Full rollover of unused hours</li>
-            </ul>
-            <a class="btn btn-ghost" href="https://wa.me/8801771063637?text=Hi%20OceanBlue%2C%20I%27m%20interested%20in%20the%20Partner%20retainer.">Request This Plan</a>
-          </article>
+          <article class="tier"><h3>Starter</h3><div class="price">$390 <small>/ month</small></div><p class="tier-desc">For small teams who need steady iteration.</p><ul><li>20 hours of development per month</li><li>Priority email and WhatsApp support</li><li>Monthly progress report</li><li>Rollover of up to 5 unused hours</li></ul><a class="btn btn-ghost" href="https://wa.me/8801771063637?text=Hi%20OceanBlue%2C%20I%27m%20interested%20in%20the%20Starter%20retainer.">Request This Plan</a></article>
+          <article class="tier featured"><span class="tier-flag">Most Popular</span><h3>Studio</h3><div class="price">$990 <small>/ month</small></div><p class="tier-desc">For growing products that need a dedicated build cadence.</p><ul><li>60 hours of development per month</li><li>Dedicated point of contact</li><li>Bi-weekly calls and planning</li><li>Priority turnaround on urgent work</li><li>Rollover of up to 15 unused hours</li></ul><a class="btn" href="https://wa.me/8801771063637?text=Hi%20OceanBlue%2C%20I%27m%20interested%20in%20the%20Studio%20retainer.">Request This Plan</a></article>
+          <article class="tier"><h3>Partner</h3><div class="price">$2,400 <small>/ month</small></div><p class="tier-desc">Full team access for products with continuous needs.</p><ul><li>150 hours of development per month</li><li>Full team access — AR/VR, web, media</li><li>Weekly calls and roadmap planning</li><li>Same-day response on urgent issues</li><li>Full rollover of unused hours</li></ul><a class="btn btn-ghost" href="https://wa.me/8801771063637?text=Hi%20OceanBlue%2C%20I%27m%20interested%20in%20the%20Partner%20retainer.">Request This Plan</a></article>
         </div>
         <p class="tier-note">All plans billed monthly. Custom scopes available — just ask.</p>
       </div>
@@ -798,6 +872,7 @@ footer .logo-mark{background:linear-gradient(140deg,rgba(8,145,178,.24),rgba(125
   </div>
 </section>
 
+<!-- CONTACT -->
 <section id="contact" data-tint="ice">
   <div class="wrap">
     <div class="contact-grid">
@@ -806,28 +881,11 @@ footer .logo-mark{background:linear-gradient(140deg,rgba(8,145,178,.24),rgba(125
         <h2 class="sec-title" data-reveal style="--d:60ms">Let's Build Something <span class="grad">Immersive</span></h2>
         <p class="sec-sub" data-reveal style="--d:120ms">Tell us about your project. WhatsApp is fastest. Email works too.</p>
         <div class="info-list">
-          <a class="info" href="https://wa.me/8801771063637" target="_blank" rel="noopener" data-reveal style="--d:0ms">
-            <span class="info-ic"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.6 9.6 0 0 1-3.3-.6L3 21l1.8-5.1A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5Z"/></svg></span>
-            <span class="info-body"><b>WhatsApp · Primary</b><span>+880 1771 063637</span></span>
-          </a>
-          <a class="info" href="https://wa.me/8801675330378" target="_blank" rel="noopener" data-reveal style="--d:60ms">
-            <span class="info-ic"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.6 9.6 0 0 1-3.3-.6L3 21l1.8-5.1A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5Z"/></svg></span>
-            <span class="info-body"><b>WhatsApp · Alternate</b><span>+880 1675 330378</span></span>
-          </a>
-          <div class="info" data-reveal style="--d:120ms">
-            <span class="info-ic"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg></span>
-            <span class="info-body"><b>WeChat</b><span>OceanBlueIT</span></span>
-            <button class="copy-btn" data-copy="OceanBlueIT" aria-label="Copy WeChat ID" type="button"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>
-          </div>
-          <div class="info" data-reveal style="--d:180ms">
-            <span class="info-ic"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg></span>
-            <span class="info-body"><b>Email</b><span>oceanblueits@gmail.com</span></span>
-            <button class="copy-btn" data-copy="oceanblueits@gmail.com" aria-label="Copy email" type="button"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>
-          </div>
-          <div class="info" data-reveal style="--d:240ms">
-            <span class="info-ic"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
-            <span class="info-body"><b>Registered Office</b><span>142/1, Kha-Para Road, Tongi 1711, Dhaka, Bangladesh</span></span>
-          </div>
+          <a class="info" href="https://wa.me/8801771063637" target="_blank" rel="noopener" data-reveal style="--d:0ms"><span class="info-ic"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.6 9.6 0 0 1-3.3-.6L3 21l1.8-5.1A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5Z"/></svg></span><span class="info-body"><b>WhatsApp · Primary</b><span>+880 1771 063637</span></span></a>
+          <a class="info" href="https://wa.me/8801675330378" target="_blank" rel="noopener" data-reveal style="--d:60ms"><span class="info-ic"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.6 9.6 0 0 1-3.3-.6L3 21l1.8-5.1A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5Z"/></svg></span><span class="info-body"><b>WhatsApp · Alternate</b><span>+880 1675 330378</span></span></a>
+          <div class="info" data-reveal style="--d:120ms"><span class="info-ic"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg></span><span class="info-body"><b>WeChat</b><span>OceanBlueIT</span></span><button class="copy-btn" data-copy="OceanBlueIT" aria-label="Copy WeChat ID" type="button"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button></div>
+          <div class="info" data-reveal style="--d:180ms"><span class="info-ic"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg></span><span class="info-body"><b>Email</b><span>oceanblueits@gmail.com</span></span><button class="copy-btn" data-copy="oceanblueits@gmail.com" aria-label="Copy email" type="button"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button></div>
+          <div class="info" data-reveal style="--d:240ms"><span class="info-ic"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg></span><span class="info-body"><b>Registered Office</b><span>142/1, Kha-Para Road, Tongi 1711, Dhaka, Bangladesh</span></span></div>
         </div>
       </div>
       <form class="form" id="contactForm" data-reveal style="--d:100ms" novalidate>
@@ -848,16 +906,13 @@ footer .logo-mark{background:linear-gradient(140deg,rgba(8,145,178,.24),rgba(125
 <footer>
   <div class="wrap">
     <div class="foot-top">
-      <a href="#home" class="logo">
-        <span class="logo-mark"></span>
-        <span class="logo-text">OCEAN<em>BLUE</em><small>IT STUDIO</small></span>
-      </a>
+      <a href="#home" class="logo"><span class="logo-mark"></span><span class="logo-text">OCEAN<em>BLUE</em><small>IT STUDIO</small></span></a>
       <nav class="foot-links">
         <a href="#game">Play</a>
+        <a href="#portal">Portal</a>
+        <a href="#ar-gallery">AR Gallery</a>
         <a href="#capabilities">Capabilities</a>
         <a href="#work">Work</a>
-        <a href="#assistant">AI Scope</a>
-        <a href="#retainers">Retainers</a>
         <a href="#contact">Contact</a>
         <a href="sourcing.html">Sourcing</a>
         <a href="privacy.html">Privacy</a>
@@ -883,7 +938,6 @@ window.addEventListener('load', function(){
 });
 document.getElementById('year').textContent = new Date().getFullYear();
 
-/* NAV */
 (function(){
   var nav = document.getElementById('nav');
   var menuBtn = document.getElementById('menuBtn');
@@ -904,7 +958,6 @@ document.getElementById('year').textContent = new Date().getFullYear();
   });
 })();
 
-/* MOBILE COLLAPSE */
 (function(){
   document.querySelectorAll('.sec-toggle').forEach(function(btn){
     btn.addEventListener('click', function(){
@@ -916,7 +969,6 @@ document.getElementById('year').textContent = new Date().getFullYear();
   });
 })();
 
-/* TYPING */
 (function(){
   var el = document.getElementById('typed');
   if(!el) return;
@@ -933,7 +985,6 @@ document.getElementById('year').textContent = new Date().getFullYear();
   type();
 })();
 
-/* REVEAL */
 (function(){
   var items = document.querySelectorAll('[data-reveal]');
   if(!('IntersectionObserver' in window)){ items.forEach(function(i){ i.classList.add('in'); }); return; }
@@ -945,7 +996,6 @@ document.getElementById('year').textContent = new Date().getFullYear();
   items.forEach(function(i){ io.observe(i); });
 })();
 
-/* COUNTERS */
 (function(){
   var counters = document.querySelectorAll('[data-counter]');
   if(!counters.length) return;
@@ -971,7 +1021,6 @@ document.getElementById('year').textContent = new Date().getFullYear();
   counters.forEach(function(c){ io.observe(c); });
 })();
 
-/* COPY BUTTONS */
 (function(){
   document.querySelectorAll('.copy-btn').forEach(function(btn){
     btn.addEventListener('click', function(e){
@@ -993,7 +1042,6 @@ document.getElementById('year').textContent = new Date().getFullYear();
   }
 })();
 
-/* AI ASSISTANT */
 (function(){
   function init(){
     var log = document.getElementById('aiLog');
@@ -1122,7 +1170,6 @@ document.getElementById('year').textContent = new Date().getFullYear();
   else init();
 })();
 
-/* CONTACT FORM */
 (function(){
   var form = document.getElementById('contactForm');
   if(!form) return;
@@ -1183,26 +1230,359 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
 <script type="module">
 (async function(){
+  var canvas = document.getElementById('portalCanvas');
+  if(!canvas) return;
+  var THREE;
+  try { THREE = await import('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js'); }
+  catch(e){ canvas.style.display = 'none'; return; }
+
+  var container = canvas.parentElement;
+  var overlay = document.getElementById('portalOverlay');
+  var startBtn = document.getElementById('portalStart');
+  var arBtn = document.getElementById('portalARBtn');
+  var badge = document.getElementById('portalBadge');
+  var sceneBtns = document.querySelectorAll('.portal-scene-btn');
+
+  var renderer, scene, camera, innerScene, portalMesh;
+  var currentSceneName = 'apartment';
+  var arSession = null;
+  var arRefSpace = null;
+  var hitTestSource = null;
+  var reticle = null;
+  var isARSupported = false;
+  var portalPlaced = false;
+  var time = 0;
+  var previewStarted = false;
+
+  (async function(){
+    if(!navigator.xr) return;
+    try {
+      var ok = await navigator.xr.isSessionSupported('immersive-ar');
+      if(ok){ isARSupported = true; arBtn.style.display = 'inline-flex'; }
+    } catch(e){}
+  })();
+
+  function buildApartment(){
+    var g = new THREE.Group();
+    var floor = new THREE.Mesh(new THREE.PlaneGeometry(8, 8), new THREE.MeshStandardMaterial({ color: 0xC9A87C, roughness: 0.4, metalness: 0.1 }));
+    floor.rotation.x = -Math.PI / 2; g.add(floor);
+    var wallMat = new THREE.MeshStandardMaterial({ color: 0xF0EBE0, roughness: 0.9 });
+    var wall1 = new THREE.Mesh(new THREE.BoxGeometry(8, 3, 0.1), wallMat); wall1.position.set(0, 1.5, -4); g.add(wall1);
+    var wall2 = new THREE.Mesh(new THREE.BoxGeometry(0.1, 3, 8), wallMat); wall2.position.set(-4, 1.5, 0); g.add(wall2);
+    var wall3 = new THREE.Mesh(new THREE.BoxGeometry(0.1, 3, 8), wallMat); wall3.position.set(4, 1.5, 0); g.add(wall3);
+    var rug = new THREE.Mesh(new THREE.PlaneGeometry(3, 2), new THREE.MeshStandardMaterial({ color: 0x8B6F47, roughness: 0.95 }));
+    rug.rotation.x = -Math.PI / 2; rug.position.set(0, 0.01, 0); g.add(rug);
+    var sofaMat = new THREE.MeshStandardMaterial({ color: 0x4A6B7C, roughness: 0.85 });
+    var sofaBase = new THREE.Mesh(new THREE.BoxGeometry(2.5, 0.4, 0.9), sofaMat); sofaBase.position.set(0, 0.3, -2.5); g.add(sofaBase);
+    var sofaBack = new THREE.Mesh(new THREE.BoxGeometry(2.5, 0.6, 0.2), sofaMat); sofaBack.position.set(0, 0.8, -2.9); g.add(sofaBack);
+    [-1.15, 1.15].forEach(function(x){ var arm = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.5, 0.9), sofaMat); arm.position.set(x, 0.5, -2.5); g.add(arm); });
+    var tableTop = new THREE.Mesh(new THREE.BoxGeometry(1.4, 0.08, 0.7), new THREE.MeshStandardMaterial({ color: 0x2A1F1A, roughness: 0.35, metalness: 0.2 }));
+    tableTop.position.set(0, 0.42, -0.5); g.add(tableTop);
+    [[-0.6,-0.25],[0.6,-0.25],[-0.6,0.25],[0.6,0.25]].forEach(function(p){
+      var leg = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.42, 8), new THREE.MeshStandardMaterial({ color: 0x1A1A1A, metalness: 0.7, roughness: 0.3 }));
+      leg.position.set(p[0], 0.21, -0.5 + p[1]); g.add(leg);
+    });
+    var tv = new THREE.Mesh(new THREE.BoxGeometry(2.4, 1.4, 0.08), new THREE.MeshStandardMaterial({ color: 0x0A0A0A, metalness: 0.6, roughness: 0.2 }));
+    tv.position.set(0, 1.8, -3.92); g.add(tv);
+    var tvScreen = new THREE.Mesh(new THREE.PlaneGeometry(2.25, 1.25), new THREE.MeshBasicMaterial({ color: 0x0891B2 }));
+    tvScreen.position.set(0, 1.8, -3.87); g.add(tvScreen);
+    var lampPole = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 1.6, 8), new THREE.MeshStandardMaterial({ color: 0x1A1A1A, metalness: 0.8, roughness: 0.3 }));
+    lampPole.position.set(2.6, 0.8, -2.5); g.add(lampPole);
+    var lampShade = new THREE.Mesh(new THREE.ConeGeometry(0.35, 0.5, 16, 1, true), new THREE.MeshStandardMaterial({ color: 0xFFF4E0, emissive: 0xFFE5B0, emissiveIntensity: 0.8, side: THREE.DoubleSide }));
+    lampShade.position.set(2.6, 1.7, -2.5); g.add(lampShade);
+    var lampLight = new THREE.PointLight(0xFFE5B0, 1.2, 6); lampLight.position.set(2.6, 1.6, -2.5); g.add(lampLight);
+    var pot = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.22, 0.4, 12), new THREE.MeshStandardMaterial({ color: 0x8B5A2B, roughness: 0.85 }));
+    pot.position.set(-2.8, 0.2, -3.2); g.add(pot);
+    var foliage = new THREE.Mesh(new THREE.SphereGeometry(0.5, 12, 10), new THREE.MeshStandardMaterial({ color: 0x2E8B57, roughness: 0.9 }));
+    foliage.position.set(-2.8, 0.9, -3.2); foliage.scale.set(1, 1.2, 1); g.add(foliage);
+    var ceilLight = new THREE.PointLight(0xFFFFFF, 0.6, 12); ceilLight.position.set(0, 2.8, 0); g.add(ceilLight);
+    return g;
+  }
+
+  function buildGarden(){
+    var g = new THREE.Group();
+    var ground = new THREE.Mesh(new THREE.PlaneGeometry(12, 12), new THREE.MeshStandardMaterial({ color: 0x4A7C3A, roughness: 0.95 }));
+    ground.rotation.x = -Math.PI / 2; g.add(ground);
+    var path = new THREE.Mesh(new THREE.PlaneGeometry(1.2, 8), new THREE.MeshStandardMaterial({ color: 0xD4C4A0, roughness: 0.9 }));
+    path.rotation.x = -Math.PI / 2; path.position.set(0, 0.01, 0); g.add(path);
+    function makeTree(x, z, s){
+      var t = new THREE.Group();
+      var trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.15*s, 0.2*s, 1.6*s, 8), new THREE.MeshStandardMaterial({ color: 0x5C3A21, roughness: 0.9 }));
+      trunk.position.y = 0.8*s; t.add(trunk);
+      var crown1 = new THREE.Mesh(new THREE.SphereGeometry(0.9*s, 12, 10), new THREE.MeshStandardMaterial({ color: 0x2E6B2E, roughness: 0.9 }));
+      crown1.position.y = 1.9*s; t.add(crown1);
+      var crown2 = new THREE.Mesh(new THREE.SphereGeometry(0.7*s, 12, 10), new THREE.MeshStandardMaterial({ color: 0x3A7C3A, roughness: 0.9 }));
+      crown2.position.set(0.4*s, 2.2*s, 0.2*s); t.add(crown2);
+      t.position.set(x, 0, z); return t;
+    }
+    g.add(makeTree(-3, -3, 1.2)); g.add(makeTree(3, -3, 1)); g.add(makeTree(-3, 2, 0.9)); g.add(makeTree(3, 2, 1.1));
+    for(var i = 0; i < 20; i++){
+      var fx = (Math.random() - 0.5) * 10;
+      var fz = (Math.random() - 0.5) * 10;
+      if(Math.abs(fx) < 1) continue;
+      var flower = new THREE.Mesh(new THREE.SphereGeometry(0.1, 8, 6), new THREE.MeshStandardMaterial({ color: [0xFF6B9D, 0xFFC857, 0xE85AAD, 0xFF8C42][i % 4] }));
+      flower.position.set(fx, 0.1, fz); g.add(flower);
+    }
+    var sun = new THREE.DirectionalLight(0xFFF3D6, 1.3); sun.position.set(5, 8, 3); g.add(sun);
+    g.add(new THREE.HemisphereLight(0x89CFF0, 0x2E4A2E, 0.6));
+    return g;
+  }
+
+  function buildUnderwater(){
+    var g = new THREE.Group();
+    var floor = new THREE.Mesh(new THREE.PlaneGeometry(14, 14, 32, 32), new THREE.MeshStandardMaterial({ color: 0xD4C4A0, roughness: 1 }));
+    var pos = floor.geometry.attributes.position;
+    for(var i = 0; i < pos.count; i++){
+      var x = pos.getX(i), y = pos.getY(i);
+      pos.setZ(i, Math.sin(x*0.5)*0.1 + Math.cos(y*0.7)*0.1);
+    }
+    floor.geometry.computeVertexNormals();
+    floor.rotation.x = -Math.PI / 2; g.add(floor);
+    for(var j = 0; j < 3; j++){
+      var l = new THREE.PointLight(0x7DD3FC, 0.8, 8);
+      l.position.set((Math.random()-0.5)*6, 3, (Math.random()-0.5)*6);
+      l.userData.isCaustic = true; g.add(l);
+    }
+    for(var r = 0; r < 8; r++){
+      var rock = new THREE.Mesh(new THREE.DodecahedronGeometry(0.3 + Math.random()*0.4, 0), new THREE.MeshStandardMaterial({ color: 0x6B5E4A, roughness: 1 }));
+      rock.position.set((Math.random()-0.5)*10, 0.2, (Math.random()-0.5)*10);
+      rock.rotation.set(Math.random(), Math.random(), Math.random());
+      g.add(rock);
+    }
+    for(var s = 0; s < 12; s++){
+      var weed = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.06, 0.8 + Math.random()*0.8, 6), new THREE.MeshStandardMaterial({ color: 0x1F6B4A, roughness: 0.85 }));
+      weed.position.set((Math.random()-0.5)*10, 0.5, (Math.random()-0.5)*10);
+      weed.userData.isWeed = true;
+      weed.userData.offset = Math.random() * Math.PI * 2;
+      g.add(weed);
+    }
+    for(var f = 0; f < 10; f++){
+      var fish = new THREE.Group();
+      var fishBody = new THREE.Mesh(new THREE.SphereGeometry(0.14, 10, 8), new THREE.MeshStandardMaterial({ color: [0xFF8C42, 0x7DD3FC, 0xFFC857, 0xE85AAD][f % 4], metalness: 0.3, roughness: 0.5 }));
+      fishBody.scale.set(1.6, 0.9, 0.9); fish.add(fishBody);
+      var fishTail = new THREE.Mesh(new THREE.ConeGeometry(0.1, 0.18, 6), new THREE.MeshStandardMaterial({ color: 0xFFFFFF, roughness: 0.7 }));
+      fishTail.position.set(-0.22, 0, 0); fishTail.rotation.z = Math.PI / 2; fish.add(fishTail);
+      fish.userData.isFish = true;
+      fish.userData.offsetX = Math.random() * Math.PI * 2;
+      fish.userData.offsetY = Math.random() * Math.PI * 2;
+      fish.userData.radius = 1 + Math.random() * 3;
+      fish.userData.speed = 0.3 + Math.random() * 0.4;
+      fish.userData.height = 0.8 + Math.random() * 2;
+      g.add(fish);
+    }
+    for(var b = 0; b < 20; b++){
+      var bubble = new THREE.Mesh(new THREE.SphereGeometry(0.03 + Math.random()*0.04, 8, 6), new THREE.MeshBasicMaterial({ color: 0xE0F2FF, transparent: true, opacity: 0.4 }));
+      bubble.position.set((Math.random()-0.5)*8, Math.random()*4, (Math.random()-0.5)*8);
+      bubble.userData.isBubble = true;
+      bubble.userData.speed = 0.3 + Math.random() * 0.4;
+      g.add(bubble);
+    }
+    g.add(new THREE.HemisphereLight(0x7DD3FC, 0x1F4A5C, 0.7));
+    var topLight = new THREE.DirectionalLight(0xA0E4FF, 0.8); topLight.position.set(0, 5, 0); g.add(topLight);
+    return g;
+  }
+
+  function buildPortalFrame(){
+    var g = new THREE.Group();
+    var ring = new THREE.Mesh(new THREE.TorusGeometry(0.9, 0.06, 16, 60), new THREE.MeshStandardMaterial({ color: 0x00E5FF, emissive: 0x00E5FF, emissiveIntensity: 1.6, metalness: 0.9, roughness: 0.15 }));
+    g.add(ring);
+    var disc = new THREE.Mesh(new THREE.CircleGeometry(0.88, 64), new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0 }));
+    disc.position.z = 0.001; g.add(disc);
+    var outerRing = new THREE.Mesh(new THREE.TorusGeometry(1.0, 0.02, 12, 60), new THREE.MeshBasicMaterial({ color: 0x7DD3FC, transparent: true, opacity: 0.5 }));
+    g.add(outerRing);
+    return g;
+  }
+
+  function init(){
+    var w = container.clientWidth;
+    var h = container.clientHeight;
+    renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setSize(w, h, false);
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.xr.enabled = true;
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera(50, w / h, 0.1, 200);
+    innerScene = buildApartment();
+    innerScene.position.set(0, 1.3, 0);
+    scene.add(innerScene);
+    portalMesh = buildPortalFrame();
+    portalMesh.position.set(0, 1.2, 0);
+    scene.add(portalMesh);
+    camera.position.set(0, 1.2, 3.2);
+    camera.lookAt(0, 1.2, 0);
+    var retGeo = new THREE.RingGeometry(0.14, 0.2, 32);
+    retGeo.rotateX(-Math.PI / 2);
+    reticle = new THREE.Mesh(retGeo, new THREE.MeshBasicMaterial({ color: 0x00E5FF, side: THREE.DoubleSide }));
+    reticle.matrixAutoUpdate = false;
+    reticle.visible = false;
+    window.addEventListener('resize', onResize);
+    onResize();
+    renderer.setAnimationLoop(renderLoop);
+  }
+
+  function onResize(){
+    var w = container.clientWidth;
+    var h = container.clientHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+
+  sceneBtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var name = btn.dataset.scene;
+      if(name === currentSceneName) return;
+      currentSceneName = name;
+      scene.remove(innerScene);
+      if(name === 'apartment') innerScene = buildApartment();
+      else if(name === 'garden') innerScene = buildGarden();
+      else innerScene = buildUnderwater();
+      innerScene.position.set(0, 1.3, 0);
+      scene.add(innerScene);
+      sceneBtns.forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      badge.textContent = name.charAt(0).toUpperCase() + name.slice(1) + ' · Preview';
+    });
+  });
+
+  if(startBtn){
+    startBtn.addEventListener('click', function(){
+      if(overlay) overlay.style.display = 'none';
+      previewStarted = true;
+    });
+  }
+
+  if(arBtn){
+    arBtn.addEventListener('click', async function(){
+      if(arSession){ arSession.end(); return; }
+      if(!isARSupported) return;
+      try {
+        arSession = await navigator.xr.requestSession('immersive-ar', {
+          requiredFeatures: ['hit-test'],
+          optionalFeatures: ['dom-overlay'],
+          domOverlay: { root: container }
+        });
+        renderer.xr.setReferenceSpaceType('local');
+        await renderer.xr.setSession(arSession);
+        portalMesh.visible = false;
+        innerScene.visible = false;
+        scene.add(reticle);
+        var viewerSpace = await arSession.requestReferenceSpace('viewer');
+        hitTestSource = await arSession.requestHitTestSource({ space: viewerSpace });
+        arRefSpace = renderer.xr.getReferenceSpace();
+        portalPlaced = false;
+        arSession.addEventListener('end', function(){
+          arSession = null;
+          hitTestSource = null;
+          portalMesh.visible = true;
+          innerScene.visible = true;
+          scene.remove(reticle);
+          reticle.visible = false;
+          portalPlaced = false;
+          arBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5Zm0 20 10-5-10-5L2 17l10 5Z"/></svg> Place Portal in Your Space';
+        });
+        arSession.addEventListener('select', function(){
+          if(reticle.visible && !portalPlaced){
+            var mat = new THREE.Matrix4().fromArray(reticle.matrix.elements);
+            portalMesh.position.setFromMatrixPosition(mat);
+            portalMesh.visible = true;
+            portalMesh.scale.set(0.6, 0.6, 0.6);
+            innerScene.visible = true;
+            innerScene.position.copy(portalMesh.position);
+            innerScene.scale.set(0.6, 0.6, 0.6);
+            portalPlaced = true;
+            reticle.visible = false;
+            arBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5Zm0 20 10-5-10-5L2 17l10 5Z"/></svg> Portal Placed · Tap to Exit';
+          }
+        });
+        arBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5Zm0 20 10-5-10-5L2 17l10 5Z"/></svg> Cancel AR';
+      } catch(e){
+        console.warn('AR portal failed:', e);
+        alert('Could not start AR: ' + (e.message || e.name));
+        arSession = null;
+      }
+    });
+  }
+
+  function renderLoop(timestamp, frame){
+    var t = timestamp ? timestamp * 0.001 : performance.now() * 0.001;
+    var dt = Math.min(t - time, 0.1);
+    time = t;
+
+    if(frame && hitTestSource && reticle && !portalPlaced){
+      var results = frame.getHitTestResults(hitTestSource);
+      if(results.length > 0){
+        var pose = results[0].getPose(arRefSpace);
+        if(pose){ reticle.visible = true; reticle.matrix.fromArray(pose.transform.matrix); }
+      } else { reticle.visible = false; }
+    }
+
+    if(portalMesh){
+      var ring = portalMesh.children[0];
+      if(ring) ring.material.emissiveIntensity = 1.4 + Math.sin(t * 3) * 0.4;
+      portalMesh.rotation.z = Math.sin(t * 0.5) * 0.05;
+    }
+
+    if(innerScene){
+      innerScene.traverse(function(obj){
+        if(obj.userData.isCaustic){
+          obj.position.x += Math.sin(t * 0.5 + obj.position.z) * 0.005;
+          obj.position.z += Math.cos(t * 0.4 + obj.position.x) * 0.005;
+        }
+        if(obj.userData.isFish){
+          var ang = t * obj.userData.speed + obj.userData.offsetX;
+          obj.position.x = Math.cos(ang) * obj.userData.radius;
+          obj.position.z = Math.sin(ang) * obj.userData.radius;
+          obj.position.y = obj.userData.height + Math.sin(t * 2 + obj.userData.offsetY) * 0.15;
+          obj.rotation.y = -ang + Math.PI / 2;
+        }
+        if(obj.userData.isBubble){
+          obj.position.y += obj.userData.speed * dt;
+          if(obj.position.y > 5){
+            obj.position.y = 0;
+            obj.position.x = (Math.random() - 0.5) * 8;
+            obj.position.z = (Math.random() - 0.5) * 8;
+          }
+        }
+        if(obj.userData.isWeed){
+          obj.rotation.z = Math.sin(t * 1.2 + obj.userData.offset) * 0.15;
+        }
+      });
+    }
+
+    if(!arSession && previewStarted){
+      camera.position.x = Math.sin(t * 0.2) * 0.15;
+      camera.position.y = 1.2 + Math.sin(t * 0.3) * 0.05;
+      camera.lookAt(0, 1.2, 0);
+    }
+
+    renderer.render(scene, camera);
+  }
+
+  init();
+})();
+</script>
+
+<script type="module">
+(async function(){
   var canvas = document.getElementById('gameCanvas');
   if(!canvas) return;
-
   var THREE;
-  try {
-    THREE = await import('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js');
-  } catch(e){
-    console.warn('Three.js failed to load', e);
-    canvas.style.display = 'none';
-    return;
-  }
+  try { THREE = await import('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js'); }
+  catch(e){ canvas.style.display = 'none'; return; }
 
   var scoreWrap = document.getElementById('gameScoreWrap');
   var scoreEl = document.getElementById('gameScore');
   var resetBtn = document.getElementById('gameReset');
   var soundBtn = document.getElementById('gameSound');
   var msgEl = document.getElementById('gameMsg');
+  var arBtn = document.getElementById('gameAR');
+  var arBtnText = document.getElementById('gameARText');
+  var arHint = document.getElementById('gameARHint');
   var container = canvas.parentElement;
 
-  var renderer, scene, camera, carGroup;
+  var renderer, scene, camera, carGroup, grid, floor, mark;
   var carPaintMaterials = [];
   var brakeLights = [];
   var coins = [];
@@ -1212,8 +1592,13 @@ document.getElementById('year').textContent = new Date().getFullYear();
   var audioCtx = null;
   var soundOn = false;
   var currentColor = '#DC2626';
+  var arSession = null;
+  var arReticle = null;
+  var arHitTestSource = null;
+  var arRefSpace = null;
+  var carPlacedInAR = false;
+  var isARSupported = false;
 
-  /* === SOUND === */
   function initAudio(){
     if(audioCtx) return;
     try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e){}
@@ -1242,199 +1627,68 @@ document.getElementById('year').textContent = new Date().getFullYear();
     });
   }
 
-  /* === EXOTIC CAR BUILDER === */
+  (async function(){
+    if(!arBtn) return;
+    if(!navigator.xr){ arBtn.style.display = 'none'; return; }
+    try {
+      var ok = await navigator.xr.isSessionSupported('immersive-ar');
+      isARSupported = ok;
+      if(ok) arBtn.style.display = 'inline-flex';
+    } catch(e){ arBtn.style.display = 'none'; }
+  })();
+
   function buildExoticCar(colorHex){
     var g = new THREE.Group();
-    var paint = new THREE.MeshStandardMaterial({
-      color: new THREE.Color(colorHex),
-      metalness: 0.82,
-      roughness: 0.22
-    });
+    var paint = new THREE.MeshStandardMaterial({ color: new THREE.Color(colorHex), metalness: 0.82, roughness: 0.22 });
     carPaintMaterials.push(paint);
-
     var darkMat = new THREE.MeshStandardMaterial({ color: 0x0A0A0A, metalness: 0.55, roughness: 0.55 });
-    var glassMat = new THREE.MeshStandardMaterial({
-      color: 0x0F1A2E, metalness: 0.7, roughness: 0.08,
-      transparent: true, opacity: 0.85
-    });
+    var glassMat = new THREE.MeshStandardMaterial({ color: 0x0F1A2E, metalness: 0.7, roughness: 0.08, transparent: true, opacity: 0.85 });
     var chromeMat = new THREE.MeshStandardMaterial({ color: 0xE8E8E8, metalness: 1, roughness: 0.12 });
     var brakeMat = new THREE.MeshStandardMaterial({ color: 0xFF3B30, metalness: 0.55, roughness: 0.4, emissive: 0xFF3B30, emissiveIntensity: 0.35 });
     var headMat = new THREE.MeshStandardMaterial({ color: 0xFFFFFF, emissive: 0xE0F2FF, emissiveIntensity: 1.4, metalness: 0.9, roughness: 0.1 });
     var tailMat = new THREE.MeshStandardMaterial({ color: 0xFF0000, emissive: 0xFF0000, emissiveIntensity: 1.1, metalness: 0.6, roughness: 0.3 });
     var exhaustMat = new THREE.MeshStandardMaterial({ color: 0x2A2A2A, metalness: 0.9, roughness: 0.25, emissive: 0xFFAA00, emissiveIntensity: 0.4 });
 
-    /* Lower side skirts */
-    var skirt = new THREE.Mesh(new THREE.BoxGeometry(1.72, 0.11, 2.38), darkMat);
-    skirt.position.y = 0.34;
-    g.add(skirt);
+    var skirt = new THREE.Mesh(new THREE.BoxGeometry(1.72, 0.11, 2.38), darkMat); skirt.position.y = 0.34; g.add(skirt);
+    var body = new THREE.Mesh(new THREE.BoxGeometry(1.62, 0.28, 2.4), paint); body.position.y = 0.5; g.add(body);
+    var nose = new THREE.Mesh(new THREE.BoxGeometry(1.52, 0.18, 0.85), paint); nose.position.set(0, 0.42, 1.55); g.add(nose);
+    var splitter = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.06, 0.5), darkMat); splitter.position.set(0, 0.29, 1.9); g.add(splitter);
+    var hood = new THREE.Mesh(new THREE.BoxGeometry(1.35, 0.14, 0.85), paint); hood.position.set(0, 0.64, 1.0); hood.rotation.x = -0.09; g.add(hood);
+    [-0.35, 0.35].forEach(function(x){ var vent = new THREE.Mesh(new THREE.BoxGeometry(0.32, 0.03, 0.4), darkMat); vent.position.set(x, 0.71, 1.02); vent.rotation.x = -0.09; g.add(vent); });
+    var cabinBase = new THREE.Mesh(new THREE.BoxGeometry(1.15, 0.15, 1.3), paint); cabinBase.position.set(0, 0.7, -0.1); g.add(cabinBase);
+    var windshield = new THREE.Mesh(new THREE.BoxGeometry(0.98, 0.42, 0.06), glassMat); windshield.position.set(0, 0.92, 0.5); windshield.rotation.x = 0.6; g.add(windshield);
+    var roof = new THREE.Mesh(new THREE.BoxGeometry(0.92, 0.06, 0.85), paint); roof.position.set(0, 1.08, -0.2); g.add(roof);
+    [-0.51, 0.51].forEach(function(x){ var sw = new THREE.Mesh(new THREE.BoxGeometry(0.02, 0.3, 0.8), glassMat); sw.position.set(x, 0.92, -0.18); g.add(sw); });
+    var rearGlass = new THREE.Mesh(new THREE.BoxGeometry(0.92, 0.3, 0.06), glassMat); rearGlass.position.set(0, 0.94, -0.66); rearGlass.rotation.x = -0.62; g.add(rearGlass);
+    var rearDeck = new THREE.Mesh(new THREE.BoxGeometry(1.55, 0.22, 0.72), paint); rearDeck.position.set(0, 0.63, -1.05); g.add(rearDeck);
+    [-0.55, 0.55].forEach(function(x){ var pylon = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.28, 0.06), darkMat); pylon.position.set(x, 0.88, -1.3); g.add(pylon); });
+    var wing = new THREE.Mesh(new THREE.BoxGeometry(1.5, 0.05, 0.38), darkMat); wing.position.set(0, 1.04, -1.32); wing.rotation.x = -0.08; g.add(wing);
+    [-0.78, 0.78].forEach(function(x){ var plate = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.16, 0.42), darkMat); plate.position.set(x, 1.0, -1.32); g.add(plate); });
+    [[-0.85, 0.55, 0.85],[0.85, 0.55, 0.85],[-0.85, 0.55, -0.85],[0.85, 0.55, -0.85]].forEach(function(p){ var fender = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.26, 0.95), paint); fender.position.set(p[0], p[1], p[2]); g.add(fender); });
 
-    /* Main body */
-    var body = new THREE.Mesh(new THREE.BoxGeometry(1.62, 0.28, 2.4), paint);
-    body.position.y = 0.5;
-    g.add(body);
-
-    /* Lower nose wedge */
-    var nose = new THREE.Mesh(new THREE.BoxGeometry(1.52, 0.18, 0.85), paint);
-    nose.position.set(0, 0.42, 1.55);
-    g.add(nose);
-
-    /* Front splitter */
-    var splitter = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.06, 0.5), darkMat);
-    splitter.position.set(0, 0.29, 1.9);
-    g.add(splitter);
-
-    /* Hood slope */
-    var hood = new THREE.Mesh(new THREE.BoxGeometry(1.35, 0.14, 0.85), paint);
-    hood.position.set(0, 0.64, 1.0);
-    hood.rotation.x = -0.09;
-    g.add(hood);
-
-    /* Hood vents */
-    [-0.35, 0.35].forEach(function(x){
-      var vent = new THREE.Mesh(new THREE.BoxGeometry(0.32, 0.03, 0.4), darkMat);
-      vent.position.set(x, 0.71, 1.02);
-      vent.rotation.x = -0.09;
-      g.add(vent);
-    });
-
-    /* Cabin base */
-    var cabinBase = new THREE.Mesh(new THREE.BoxGeometry(1.15, 0.15, 1.3), paint);
-    cabinBase.position.set(0, 0.7, -0.1);
-    g.add(cabinBase);
-
-    /* Windshield */
-    var windshield = new THREE.Mesh(new THREE.BoxGeometry(0.98, 0.42, 0.06), glassMat);
-    windshield.position.set(0, 0.92, 0.5);
-    windshield.rotation.x = 0.6;
-    g.add(windshield);
-
-    /* Roof */
-    var roof = new THREE.Mesh(new THREE.BoxGeometry(0.92, 0.06, 0.85), paint);
-    roof.position.set(0, 1.08, -0.2);
-    g.add(roof);
-
-    /* Side windows */
-    [-0.51, 0.51].forEach(function(x){
-      var sw = new THREE.Mesh(new THREE.BoxGeometry(0.02, 0.3, 0.8), glassMat);
-      sw.position.set(x, 0.92, -0.18);
-      g.add(sw);
-    });
-
-    /* Rear glass / engine cover */
-    var rearGlass = new THREE.Mesh(new THREE.BoxGeometry(0.92, 0.3, 0.06), glassMat);
-    rearGlass.position.set(0, 0.94, -0.66);
-    rearGlass.rotation.x = -0.62;
-    g.add(rearGlass);
-
-    /* Rear deck */
-    var rearDeck = new THREE.Mesh(new THREE.BoxGeometry(1.55, 0.22, 0.72), paint);
-    rearDeck.position.set(0, 0.63, -1.05);
-    g.add(rearDeck);
-
-    /* Rear wing pylons */
-    [-0.55, 0.55].forEach(function(x){
-      var pylon = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.28, 0.06), darkMat);
-      pylon.position.set(x, 0.88, -1.3);
-      g.add(pylon);
-    });
-
-    /* Rear wing blade */
-    var wing = new THREE.Mesh(new THREE.BoxGeometry(1.5, 0.05, 0.38), darkMat);
-    wing.position.set(0, 1.04, -1.32);
-    wing.rotation.x = -0.08;
-    g.add(wing);
-
-    /* Wing endplates */
-    [-0.78, 0.78].forEach(function(x){
-      var plate = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.16, 0.42), darkMat);
-      plate.position.set(x, 1.0, -1.32);
-      g.add(plate);
-    });
-
-    /* Fender bulges */
-    [[-0.85, 0.55, 0.85],[0.85, 0.55, 0.85],[-0.85, 0.55, -0.85],[0.85, 0.55, -0.85]].forEach(function(p){
-      var fender = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.26, 0.95), paint);
-      fender.position.set(p[0], p[1], p[2]);
-      g.add(fender);
-    });
-
-    /* Wheels with deep-dish rims */
     function makeWheel(){
       var wg = new THREE.Group();
-      var tire = new THREE.Mesh(
-        new THREE.CylinderGeometry(0.33, 0.33, 0.23, 26),
-        new THREE.MeshStandardMaterial({ color: 0x0A0A0A, roughness: 0.96 })
-      );
-      tire.rotation.z = Math.PI / 2;
-      wg.add(tire);
+      var tire = new THREE.Mesh(new THREE.CylinderGeometry(0.33, 0.33, 0.23, 26), new THREE.MeshStandardMaterial({ color: 0x0A0A0A, roughness: 0.96 }));
+      tire.rotation.z = Math.PI / 2; wg.add(tire);
       var rim = new THREE.Mesh(new THREE.CylinderGeometry(0.24, 0.24, 0.25, 22), chromeMat);
-      rim.rotation.z = Math.PI / 2;
-      wg.add(rim);
-      /* 5 spokes */
-      for(var i = 0; i < 5; i++){
-        var spoke = new THREE.Mesh(new THREE.BoxGeometry(0.26, 0.04, 0.4), darkMat);
-        spoke.rotation.x = (i / 5) * Math.PI * 2;
-        wg.add(spoke);
-      }
-      /* Brake caliper */
-      var brake = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.14, 0.09), brakeMat);
-      brake.position.x = 0.13;
-      brake.position.y = 0.16;
-      wg.add(brake);
+      rim.rotation.z = Math.PI / 2; wg.add(rim);
+      for(var i = 0; i < 5; i++){ var spoke = new THREE.Mesh(new THREE.BoxGeometry(0.26, 0.04, 0.4), darkMat); spoke.rotation.x = (i / 5) * Math.PI * 2; wg.add(spoke); }
+      var brake = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.14, 0.09), brakeMat); brake.position.x = 0.13; brake.position.y = 0.16; wg.add(brake);
       wg.userData.isWheel = true;
       return wg;
     }
 
-    [[-0.87, 0.33, 0.85],[0.87, 0.33, 0.85],[-0.87, 0.33, -0.85],[0.87, 0.33, -0.85]].forEach(function(p){
-      var w = makeWheel();
-      w.position.set(p[0], p[1], p[2]);
-      g.add(w);
-    });
-
-    /* Headlights */
-    [-0.52, 0.52].forEach(function(x){
-      var light = new THREE.Mesh(new THREE.BoxGeometry(0.36, 0.09, 0.05), headMat);
-      light.position.set(x, 0.49, 1.97);
-      g.add(light);
-    });
-
-    /* Full-width taillight bar */
-    var taillight = new THREE.Mesh(new THREE.BoxGeometry(1.42, 0.08, 0.05), tailMat);
-    taillight.position.set(0, 0.66, -1.39);
-    taillight.userData.isBrake = true;
-    g.add(taillight);
-    brakeLights.push(taillight);
-
-    /* Quad exhausts */
-    [-0.45, -0.18, 0.18, 0.45].forEach(function(x){
-      var ex = new THREE.Mesh(new THREE.CylinderGeometry(0.055, 0.055, 0.16, 12), exhaustMat);
-      ex.rotation.x = Math.PI / 2;
-      ex.position.set(x, 0.36, -1.37);
-      g.add(ex);
-    });
-
-    /* Rear diffuser */
-    var diff = new THREE.Mesh(new THREE.BoxGeometry(1.42, 0.15, 0.32), darkMat);
-    diff.position.set(0, 0.32, -1.3);
-    g.add(diff);
-    [-0.52, -0.18, 0.18, 0.52].forEach(function(x){
-      var fin = new THREE.Mesh(new THREE.BoxGeometry(0.03, 0.2, 0.36), darkMat);
-      fin.position.set(x, 0.32, -1.3);
-      g.add(fin);
-    });
-
-    /* OceanBlue badge */
-    var badge = new THREE.Mesh(
-      new THREE.CircleGeometry(0.08, 18),
-      new THREE.MeshStandardMaterial({ color: 0x00E5FF, emissive: 0x00E5FF, emissiveIntensity: 0.9, metalness: 0.9, roughness: 0.1 })
-    );
-    badge.position.set(0, 0.51, 2.0);
-    g.add(badge);
-
+    [[-0.87, 0.33, 0.85],[0.87, 0.33, 0.85],[-0.87, 0.33, -0.85],[0.87, 0.33, -0.85]].forEach(function(p){ var w = makeWheel(); w.position.set(p[0], p[1], p[2]); g.add(w); });
+    [-0.52, 0.52].forEach(function(x){ var light = new THREE.Mesh(new THREE.BoxGeometry(0.36, 0.09, 0.05), headMat); light.position.set(x, 0.49, 1.97); g.add(light); });
+    var taillight = new THREE.Mesh(new THREE.BoxGeometry(1.42, 0.08, 0.05), tailMat); taillight.position.set(0, 0.66, -1.39); taillight.userData.isBrake = true; g.add(taillight); brakeLights.push(taillight);
+    [-0.45, -0.18, 0.18, 0.45].forEach(function(x){ var ex = new THREE.Mesh(new THREE.CylinderGeometry(0.055, 0.055, 0.16, 12), exhaustMat); ex.rotation.x = Math.PI / 2; ex.position.set(x, 0.36, -1.37); g.add(ex); });
+    var diff = new THREE.Mesh(new THREE.BoxGeometry(1.42, 0.15, 0.32), darkMat); diff.position.set(0, 0.32, -1.3); g.add(diff);
+    [-0.52, -0.18, 0.18, 0.52].forEach(function(x){ var fin = new THREE.Mesh(new THREE.BoxGeometry(0.03, 0.2, 0.36), darkMat); fin.position.set(x, 0.32, -1.3); g.add(fin); });
+    var badge = new THREE.Mesh(new THREE.CircleGeometry(0.08, 18), new THREE.MeshStandardMaterial({ color: 0x00E5FF, emissive: 0x00E5FF, emissiveIntensity: 0.9, metalness: 0.9, roughness: 0.1 }));
+    badge.position.set(0, 0.51, 2.0); g.add(badge);
     return g;
   }
 
-  /* === COIN PLACEMENT === */
   function placeCoin(coin, skipCollision){
     for(var tries = 0; tries < 20; tries++){
       var x = (Math.random() - 0.5) * 16;
@@ -1455,67 +1709,46 @@ document.getElementById('year').textContent = new Date().getFullYear();
     coin.position.set((Math.random() - 0.5) * 16, 0.4, (Math.random() - 0.5) * 16);
   }
 
-  /* === INIT === */
   function init(){
     var w = container.clientWidth;
     var h = container.clientHeight;
-
     renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     renderer.setSize(w, h, false);
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.05;
+    renderer.xr.enabled = true;
 
     scene = new THREE.Scene();
     scene.fog = new THREE.Fog(0x040B18, 18, 32);
-
     camera = new THREE.PerspectiveCamera(48, w / h, 0.1, 120);
 
     scene.add(new THREE.AmbientLight(0xffffff, 0.55));
     scene.add(new THREE.HemisphereLight(0x89CFF0, 0x0B1F33, 0.55));
+    var key = new THREE.DirectionalLight(0xffffff, 1.1); key.position.set(6, 12, 8); scene.add(key);
+    var fill = new THREE.DirectionalLight(0x0891B2, 0.65); fill.position.set(-8, 6, -6); scene.add(fill);
+    var rim = new THREE.DirectionalLight(0x7DD3FC, 0.75); rim.position.set(-5, 4, -8); scene.add(rim);
 
-    var key = new THREE.DirectionalLight(0xffffff, 1.1);
-    key.position.set(6, 12, 8);
-    scene.add(key);
-
-    var fill = new THREE.DirectionalLight(0x0891B2, 0.65);
-    fill.position.set(-8, 6, -6);
-    scene.add(fill);
-
-    var rim = new THREE.DirectionalLight(0x7DD3FC, 0.75);
-    rim.position.set(-5, 4, -8);
-    scene.add(rim);
-
-    /* Glowing ground grid */
-    var grid = new THREE.GridHelper(22, 22, 0x0891B2, 0x0C4A6E);
+    grid = new THREE.GridHelper(22, 22, 0x0891B2, 0x0C4A6E);
     grid.material.opacity = 0.55;
     grid.material.transparent = true;
     scene.add(grid);
 
-    /* Floor */
-    var floorMat = new THREE.MeshStandardMaterial({ color: 0x05101F, roughness: 0.85, metalness: 0.2 });
-    var floor = new THREE.Mesh(new THREE.CircleGeometry(11.5, 48), floorMat);
+    floor = new THREE.Mesh(new THREE.CircleGeometry(11.5, 48), new THREE.MeshStandardMaterial({ color: 0x05101F, roughness: 0.85, metalness: 0.2 }));
     floor.rotation.x = -Math.PI / 2;
     floor.position.y = -0.02;
     scene.add(floor);
 
-    /* Center marker (glowing circle) */
-    var markMat = new THREE.MeshBasicMaterial({ color: 0x0891B2, transparent: true, opacity: 0.28 });
-    var mark = new THREE.Mesh(new THREE.RingGeometry(1.5, 1.65, 48), markMat);
+    mark = new THREE.Mesh(new THREE.RingGeometry(1.5, 1.65, 48), new THREE.MeshBasicMaterial({ color: 0x0891B2, transparent: true, opacity: 0.28 }));
     mark.rotation.x = -Math.PI / 2;
     mark.position.y = 0.01;
     scene.add(mark);
 
-    /* Build car */
     carGroup = buildExoticCar(currentColor);
     scene.add(carGroup);
 
-    /* Coins */
     var coinGeo = new THREE.TorusGeometry(0.26, 0.09, 10, 22);
-    var coinMat = new THREE.MeshStandardMaterial({
-      color: 0xF59E0B, metalness: 0.95, roughness: 0.15,
-      emissive: 0xF59E0B, emissiveIntensity: 0.55
-    });
+    var coinMat = new THREE.MeshStandardMaterial({ color: 0xF59E0B, metalness: 0.95, roughness: 0.15, emissive: 0xF59E0B, emissiveIntensity: 0.55 });
     for(var i = 0; i < 7; i++){
       var coin = new THREE.Mesh(coinGeo, coinMat);
       coin.userData.collected = false;
@@ -1539,19 +1772,13 @@ document.getElementById('year').textContent = new Date().getFullYear();
     camera.updateProjectionMatrix();
   }
 
-  /* === KEYBOARD === */
   window.addEventListener('keydown', function(e){
     var k = e.key.toLowerCase();
-    if(['arrowup','arrowdown','arrowleft','arrowright','w','a','s','d',' '].indexOf(k) !== -1){
-      e.preventDefault();
-    }
+    if(['arrowup','arrowdown','arrowleft','arrowright','w','a','s','d',' '].indexOf(k) !== -1) e.preventDefault();
     keys[k] = true;
   });
-  window.addEventListener('keyup', function(e){
-    keys[e.key.toLowerCase()] = false;
-  });
+  window.addEventListener('keyup', function(e){ keys[e.key.toLowerCase()] = false; });
 
-  /* === TOUCH === */
   document.querySelectorAll('.game-btn').forEach(function(btn){
     var dir = btn.dataset.dir;
     function on(e){ if(e) e.preventDefault(); touchDirs[dir] = true; btn.classList.add('on'); }
@@ -1562,7 +1789,6 @@ document.getElementById('year').textContent = new Date().getFullYear();
     btn.addEventListener('pointercancel', off);
   });
 
-  /* === PAINT SWATCHES === */
   document.querySelectorAll('.swatch').forEach(function(sw){
     sw.addEventListener('click', function(){
       var c = sw.dataset.color;
@@ -1574,7 +1800,6 @@ document.getElementById('year').textContent = new Date().getFullYear();
     });
   });
 
-  /* === RESET === */
   if(resetBtn){
     resetBtn.addEventListener('click', function(){
       state.x = 0; state.z = 0; state.angle = 0; state.speed = 0; state.score = 0; state.combo = 0;
@@ -1588,9 +1813,96 @@ document.getElementById('year').textContent = new Date().getFullYear();
     });
   }
 
-  /* === ANIMATE === */
-  function animate(){
-    requestAnimationFrame(animate);
+  async function startAR(){
+    if(!isARSupported || arSession) return;
+    try {
+      arSession = await navigator.xr.requestSession('immersive-ar', {
+        requiredFeatures: ['hit-test'],
+        optionalFeatures: ['dom-overlay', 'local-floor'],
+        domOverlay: { root: document.getElementById('gameWrap') }
+      });
+      renderer.xr.setReferenceSpaceType('local');
+      await renderer.xr.setSession(arSession);
+
+      grid.visible = false;
+      floor.visible = false;
+      mark.visible = false;
+      coins.forEach(function(c){ c.visible = false; });
+
+      if(!arReticle){
+        var retGeo = new THREE.RingGeometry(0.14, 0.2, 32);
+        retGeo.rotateX(-Math.PI / 2);
+        arReticle = new THREE.Mesh(retGeo, new THREE.MeshBasicMaterial({ color: 0x00E5FF, side: THREE.DoubleSide }));
+        arReticle.matrixAutoUpdate = false;
+      }
+      arReticle.visible = false;
+      scene.add(arReticle);
+
+      carGroup.visible = false;
+      carPlacedInAR = false;
+
+      var viewerSpace = await arSession.requestReferenceSpace('viewer');
+      arHitTestSource = await arSession.requestHitTestSource({ space: viewerSpace });
+      arRefSpace = renderer.xr.getReferenceSpace();
+
+      document.body.classList.add('ar-active');
+      if(arHint) arHint.style.display = 'block';
+      if(arBtnText) arBtnText.textContent = 'Exit AR';
+      arBtn.classList.add('exit');
+
+      arSession.addEventListener('end', function(){
+        arSession = null;
+        arHitTestSource = null;
+        grid.visible = true;
+        floor.visible = true;
+        mark.visible = true;
+        coins.forEach(function(c){ c.visible = !c.userData.collected; });
+        carGroup.visible = true;
+        carGroup.position.set(state.x, 0, state.z);
+        carGroup.rotation.set(0, state.angle, 0);
+        if(arReticle) scene.remove(arReticle);
+        document.body.classList.remove('ar-active');
+        if(arHint) arHint.style.display = 'none';
+        if(arBtnText) arBtnText.textContent = 'Play in AR';
+        arBtn.classList.remove('exit');
+      });
+
+      arSession.addEventListener('select', function(){
+        if(arReticle && arReticle.visible && !carPlacedInAR){
+          carGroup.position.setFromMatrixPosition(arReticle.matrix);
+          carGroup.visible = true;
+          carPlacedInAR = true;
+          arReticle.visible = false;
+          scene.remove(arReticle);
+          if(arHint) arHint.style.display = 'none';
+        }
+      });
+
+    } catch(e){
+      console.warn('AR session failed:', e);
+      alert('Could not start AR: ' + (e.message || e.name || 'Unknown error'));
+      arSession = null;
+    }
+  }
+
+  if(arBtn){
+    arBtn.addEventListener('click', function(){
+      if(arSession){ arSession.end(); }
+      else { startAR(); }
+    });
+  }
+
+  function renderLoop(timestamp, frame){
+    if(frame && arHitTestSource && arReticle && !carPlacedInAR){
+      var results = frame.getHitTestResults(arHitTestSource);
+      if(results.length > 0){
+        var pose = results[0].getPose(arRefSpace);
+        if(pose){
+          arReticle.visible = true;
+          arReticle.matrix.fromArray(pose.transform.matrix);
+        }
+      } else { arReticle.visible = false; }
+    }
 
     var turn = 0;
     var throttle = 0;
@@ -1599,98 +1911,94 @@ document.getElementById('year').textContent = new Date().getFullYear();
     if(keys['arrowup'] || keys['w'] || touchDirs.up) throttle += 1;
     if(keys['arrowdown'] || keys['s'] || touchDirs.down) throttle -= 1;
 
-    /* Turn rate scales with speed (drift feel) */
-    state.angle += turn * 0.065 * Math.min(1, Math.abs(state.speed) * 4 + 0.5);
+    var canDrive = !arSession || carPlacedInAR;
 
-    /* Smooth acceleration */
-    state.speed += throttle * 0.038;
-    state.speed *= 0.945;
-    state.speed = Math.max(-0.28, Math.min(0.4, state.speed));
+    if(canDrive){
+      state.angle += turn * 0.065 * Math.min(1, Math.abs(state.speed) * 4 + 0.5);
+      state.speed += throttle * 0.038;
+      state.speed *= 0.945;
+      state.speed = Math.max(-0.28, Math.min(0.4, state.speed));
 
-    /* Move */
-    var dx = Math.sin(state.angle) * state.speed;
-    var dz = Math.cos(state.angle) * state.speed;
-    state.x += dx;
-    state.z += dz;
-
-    /* Boundary (circular track edge) */
-    var dist = Math.hypot(state.x, state.z);
-    if(dist > 10){
-      state.x = (state.x / dist) * 10;
-      state.z = (state.z / dist) * 10;
-      state.speed *= 0.35;
-    }
-
-    carGroup.position.set(state.x, 0, state.z);
-    carGroup.rotation.y = state.angle;
-
-    /* Wheels spin */
-    state.wheelSpin += state.speed * 0.75;
-    carGroup.children.forEach(function(child){
-      if(child.userData.isWheel){ child.rotation.x = state.wheelSpin; }
-    });
-
-    /* Brake light intensity when reversing */
-    brakeLights.forEach(function(bl){
-      bl.material.emissiveIntensity = state.speed < -0.02 ? 2.2 : 1.0;
-    });
-
-    /* Coins rotate */
-    coins.forEach(function(c){ c.rotation.y += 0.045; });
-
-    /* Camera follow with slight lag */
-    var camDist = 7.5, camHeight = 5.2;
-    var camTargetX = state.x - Math.sin(state.angle) * camDist;
-    var camTargetZ = state.z - Math.cos(state.angle) * camDist;
-    camera.position.x += (camTargetX - camera.position.x) * 0.075;
-    camera.position.z += (camTargetZ - camera.position.z) * 0.075;
-    camera.position.y += (camHeight - camera.position.y) * 0.075;
-    camera.lookAt(state.x, 0.7, state.z);
-
-    /* Coin pickup */
-    coins.forEach(function(coin){
-      if(coin.userData.collected) return;
-      var d = Math.hypot(coin.position.x - state.x, coin.position.z - state.z);
-      if(d < 1.0){
-        coin.userData.collected = true;
-        coin.visible = false;
-        state.score += 1;
-        state.combo += 1;
-        state.comboTimer = 2.5;
-        scoreEl.textContent = state.score;
-        playBeep(880 + state.combo * 60, 0.08, 0.07);
-        if(state.combo >= 3){
-          scoreWrap.classList.add('combo');
+      if(arSession){
+        var dx = Math.sin(state.angle) * state.speed * 0.4;
+        var dz = Math.cos(state.angle) * state.speed * 0.4;
+        carGroup.position.x += dx;
+        carGroup.position.z += dz;
+        carGroup.rotation.y = state.angle;
+      } else {
+        var dx2 = Math.sin(state.angle) * state.speed;
+        var dz2 = Math.cos(state.angle) * state.speed;
+        state.x += dx2;
+        state.z += dz2;
+        var dist = Math.hypot(state.x, state.z);
+        if(dist > 10){
+          state.x = (state.x / dist) * 10;
+          state.z = (state.z / dist) * 10;
+          state.speed *= 0.35;
         }
+        carGroup.position.set(state.x, 0, state.z);
+        carGroup.rotation.y = state.angle;
       }
-    });
 
-    /* Combo timer */
-    if(state.comboTimer > 0){
-      state.comboTimer -= 1/60;
-      if(state.comboTimer <= 0){ state.combo = 0; scoreWrap.classList.remove('combo'); }
+      state.wheelSpin += state.speed * 0.75;
+      carGroup.children.forEach(function(child){
+        if(child.userData.isWheel) child.rotation.x = state.wheelSpin;
+      });
+
+      brakeLights.forEach(function(bl){
+        bl.material.emissiveIntensity = state.speed < -0.02 ? 2.2 : 1.0;
+      });
     }
 
-    /* Respawn all coins when board is clear */
-    if(coins.every(function(c){ return c.userData.collected; })){
-      coins.forEach(function(c){
-        c.userData.collected = false;
-        c.visible = true;
-        placeCoin(c, false);
+    if(!arSession){
+      coins.forEach(function(c){ c.rotation.y += 0.045; });
+
+      var camDist = 7.5, camHeight = 5.2;
+      var camTargetX = state.x - Math.sin(state.angle) * camDist;
+      var camTargetZ = state.z - Math.cos(state.angle) * camDist;
+      camera.position.x += (camTargetX - camera.position.x) * 0.075;
+      camera.position.z += (camTargetZ - camera.position.z) * 0.075;
+      camera.position.y += (camHeight - camera.position.y) * 0.075;
+      camera.lookAt(state.x, 0.7, state.z);
+
+      coins.forEach(function(coin){
+        if(coin.userData.collected) return;
+        var d = Math.hypot(coin.position.x - state.x, coin.position.z - state.z);
+        if(d < 1.0){
+          coin.userData.collected = true;
+          coin.visible = false;
+          state.score += 1;
+          state.combo += 1;
+          state.comboTimer = 2.5;
+          scoreEl.textContent = state.score;
+          playBeep(880 + state.combo * 60, 0.08, 0.07);
+          if(state.combo >= 3) scoreWrap.classList.add('combo');
+        }
       });
+
+      if(state.comboTimer > 0){
+        state.comboTimer -= 1/60;
+        if(state.comboTimer <= 0){ state.combo = 0; scoreWrap.classList.remove('combo'); }
+      }
+
+      if(coins.every(function(c){ return c.userData.collected; })){
+        coins.forEach(function(c){
+          c.userData.collected = false;
+          c.visible = true;
+          placeCoin(c, false);
+        });
+      }
     }
 
     renderer.render(scene, camera);
   }
 
-  /* Hide welcome message after 6s */
-  if(msgEl){
-    setTimeout(function(){ msgEl.classList.add('hide'); }, 6000);
-  }
+  if(msgEl) setTimeout(function(){ msgEl.classList.add('hide'); }, 6000);
 
   init();
-  animate();
+  renderer.setAnimationLoop(renderLoop);
 })();
 </script>
+
 </body>
 </html>
